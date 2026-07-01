@@ -1,105 +1,143 @@
 "use client";
 
+// SVG Icons for skill group headers
+const MobileIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+  </svg>
+);
+const ServerIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/>
+    <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+  </svg>
+);
+const PuzzleIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"/>
+    <path d="M9 9h6v6H9z"/>
+  </svg>
+);
+const CodeIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+  </svg>
+);
+const ToolIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+  </svg>
+);
+const AgileIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+  </svg>
+);
+
 const skillGroups = [
   {
-    title: "Mobile Development",
-    icon: "📱",
+    title: "Mobile",
+    icon: <MobileIcon />,
     accent: "#00d4ff",
     skills: [
-      { name: "Flutter", level: 92 },
-      { name: "Dart", level: 90 },
-      { name: "iOS (Flutter)", level: 80 },
-      { name: "Android (Flutter)", level: 88 },
+      "Flutter", "Dart", "iOS Development", "Android Development",
+      "Cross-Platform Development", "Provider", "MVVM", "UI/UX Design",
     ],
   },
   {
-    title: "State Management",
-    icon: "⚡",
+    title: "Backend",
+    icon: <ServerIcon />,
     accent: "#7b2fff",
     skills: [
-      { name: "Riverpod", level: 88 },
-      { name: "BLoC / Cubit", level: 85 },
-      { name: "Provider", level: 90 },
-      { name: "GetX", level: 78 },
-    ],
-  },
-  {
-    title: "Backend & Database",
-    icon: "🔥",
-    accent: "#ff6b35",
-    skills: [
-      { name: "Firebase (Firestore)", level: 90 },
-      { name: "Firebase Auth", level: 92 },
-      { name: "REST APIs / Dio", level: 88 },
-      { name: "Hive (Local DB)", level: 85 },
+      "Firebase", "Firestore", "Supabase", "MySQL", "SQLite",
+      "Spring Boot", "Cloud Functions", "REST APIs", "WebSockets",
     ],
   },
   {
     title: "Integrations",
-    icon: "🗺️",
-    accent: "#00c896",
+    icon: <PuzzleIcon />,
+    accent: "#ff6b35",
     skills: [
-      { name: "Google Maps SDK", level: 82 },
-      { name: "FCM (Push Notif.)", level: 85 },
-      { name: "Stripe / Payments", level: 70 },
-      { name: "WebRTC", level: 68 },
+      "Mapbox", "Google Maps", "Stripe", "Mercado Pago",
+      "ML Models", "Thermal Printing",
     ],
+  },
+  {
+    title: "Languages",
+    icon: <CodeIcon />,
+    accent: "#00c896",
+    skills: ["Dart", "Java", "C++"],
+  },
+  {
+    title: "Tools",
+    icon: <ToolIcon />,
+    accent: "#4285f4",
+    skills: ["Android Studio", "VS Code", "Git", "GitHub", "Docker"],
+  },
+  {
+    title: "Methodology",
+    icon: <AgileIcon />,
+    accent: "#ff4081",
+    skills: ["Agile Development"],
   },
 ];
 
-const techBadges = [
-  { name: "Flutter", emoji: "💙" },
-  { name: "Dart", emoji: "🎯" },
-  { name: "Firebase", emoji: "🔥" },
-  { name: "Python", emoji: "🐍" },
-  { name: "Git", emoji: "🔀" },
-  { name: "Figma", emoji: "🎨" },
-  { name: "REST APIs", emoji: "🌐" },
-  { name: "Hive", emoji: "🗄️" },
-  { name: "Dio", emoji: "📡" },
-  { name: "Google Maps", emoji: "🗺️" },
-  { name: "WebRTC", emoji: "📹" },
-  { name: "TensorFlow", emoji: "🧠" },
-  { name: "Clean Arch.", emoji: "🏗️" },
-  { name: "MVVM", emoji: "📐" },
-  { name: "Agile", emoji: "🔄" },
-  { name: "Android Studio", emoji: "🤖" },
-];
-
-function SkillBar({ name, level, accent }: { name: string; level: number; accent: string }) {
+function SkillChip({ name, accent }: { name: string; accent: string }) {
   return (
-    <div style={{ marginBottom: 16 }}>
-      <div
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "8px 16px",
+        borderRadius: 12,
+        fontSize: 13,
+        fontWeight: 500,
+        background: "rgba(255, 255, 255, 0.02)",
+        border: "1px solid rgba(255, 255, 255, 0.05)",
+        color: "#a0aec0",
+        fontFamily: "Poppins, sans-serif",
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        cursor: "default",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.background = `${accent}12`;
+        (e.currentTarget as HTMLElement).style.borderColor = `${accent}40`;
+        (e.currentTarget as HTMLElement).style.color = "#f0f4ff";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+        (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 20px ${accent}15`;
+        const dot = (e.currentTarget as HTMLElement).querySelector(".bullet-dot") as HTMLElement;
+        if (dot) {
+          dot.style.background = accent;
+          dot.style.boxShadow = `0 0 8px ${accent}`;
+        }
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.02)";
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.05)";
+        (e.currentTarget as HTMLElement).style.color = "#a0aec0";
+        (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+        (e.currentTarget as HTMLElement).style.boxShadow = "none";
+        const dot = (e.currentTarget as HTMLElement).querySelector(".bullet-dot") as HTMLElement;
+        if (dot) {
+          dot.style.background = "#4a5568";
+          dot.style.boxShadow = "none";
+        }
+      }}
+    >
+      <span
+        className="bullet-dot"
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: 6,
-          fontFamily: "Poppins, sans-serif",
-        }}
-      >
-        <span style={{ fontSize: 13, fontWeight: 500, color: "#e2e8f0" }}>{name}</span>
-        <span style={{ fontSize: 12, color: "#4a5568", fontWeight: 500 }}>{level}%</span>
-      </div>
-      <div
-        style={{
+          width: 6,
           height: 6,
-          borderRadius: 3,
-          background: "rgba(255,255,255,0.06)",
-          overflow: "hidden",
+          borderRadius: "50%",
+          background: "#4a5568",
+          transition: "all 0.3s",
         }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: `${level}%`,
-            borderRadius: 3,
-            background: `linear-gradient(90deg, ${accent}, ${accent}aa)`,
-            boxShadow: `0 0 8px ${accent}60`,
-            transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
-        />
-      </div>
-    </div>
+      />
+      {name}
+    </span>
   );
 }
 
@@ -108,153 +146,101 @@ export default function Skills() {
     <section
       id="skills"
       style={{
-        padding: "120px 0",
+        padding: "140px 0",
         position: "relative",
         zIndex: 1,
-        background:
-          "radial-gradient(ellipse 70% 40% at 50% 0%, rgba(0,212,255,0.04) 0%, transparent 60%)",
+        overflow: "hidden",
       }}
     >
-      <div className="section-container">
+      {/* Dynamic ambient background glow specifically for this section */}
+      <div
+        style={{
+          position: "absolute",
+          top: "30%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "800px",
+          height: "400px",
+          background: "radial-gradient(ellipse, rgba(0, 212, 255, 0.04) 0%, rgba(123, 47, 255, 0.03) 50%, transparent 100%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
         <div className="section-heading">
           <span className="label">Skills</span>
-          <h2>
-            Technologies &{" "}
-            <span className="gradient-text">Expertise</span>
-          </h2>
+          <h2>Technologies &amp; <span className="gradient-text">Expertise</span></h2>
           <p>My technical toolkit for building world-class mobile experiences</p>
         </div>
 
-        {/* Skill Groups */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: 24,
-            marginBottom: 64,
-          }}
-        >
+        <div className="skills-grid">
           {skillGroups.map((group) => (
             <div
               key={group.title}
               className="glass-card"
               style={{
-                padding: "28px",
-                borderColor: `${group.accent}18`,
+                padding: "32px",
+                borderColor: "rgba(255, 255, 255, 0.06)",
+                position: "relative",
+                overflow: "hidden",
+                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = `${group.accent}30`;
+                (e.currentTarget as HTMLElement).style.boxShadow = `0 15px 40px ${group.accent}0a`;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.06)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "none";
               }}
             >
-              {/* Card header */}
+              {/* Subtle top indicator line */}
               <div
                 style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "3px",
+                  background: `linear-gradient(90deg, ${group.accent}, transparent)`,
+                }}
+              />
+
+              {/* Card header */}
+              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
+                <div style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: 12,
+                  background: `${group.accent}12`,
+                  border: `1px solid ${group.accent}25`,
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
-                  marginBottom: 24,
-                }}
-              >
-                <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 10,
-                    background: `${group.accent}15`,
-                    border: `1px solid ${group.accent}30`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 18,
-                  }}
-                >
+                  justifyContent: "center",
+                  color: group.accent,
+                }}>
                   {group.icon}
                 </div>
-                <h3
-                  style={{
-                    fontSize: 15,
-                    fontWeight: 700,
-                    color: group.accent,
-                    fontFamily: "Poppins, sans-serif",
-                  }}
-                >
+                <h3 style={{
+                  fontSize: 16,
+                  fontWeight: 700,
+                  color: "#f0f4ff",
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "-0.01em"
+                }}>
                   {group.title}
                 </h3>
               </div>
 
-              {/* Skill bars */}
-              {group.skills.map((skill) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  accent={group.accent}
-                />
-              ))}
+              {/* Skill chips */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                {group.skills.map((skill) => (
+                  <SkillChip key={skill} name={skill} accent={group.accent} />
+                ))}
+              </div>
             </div>
           ))}
-        </div>
-
-        {/* Tech badge cloud */}
-        <div
-          style={{
-            textAlign: "center",
-          }}
-        >
-          <p
-            style={{
-              fontSize: 13,
-              color: "#4a5568",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              fontFamily: "Poppins, sans-serif",
-              marginBottom: 24,
-              fontWeight: 600,
-            }}
-          >
-            Also Familiar With
-          </p>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: 10,
-            }}
-          >
-            {techBadges.map((badge) => (
-              <div
-                key={badge.name}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 6,
-                  padding: "8px 16px",
-                  borderRadius: 12,
-                  fontSize: 13,
-                  fontWeight: 500,
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  color: "#8892a4",
-                  fontFamily: "Poppins, sans-serif",
-                  cursor: "default",
-                  transition: "all 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,212,255,0.3)";
-                  (e.currentTarget as HTMLElement).style.color = "#f0f4ff";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(0,212,255,0.06)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
-                  (e.currentTarget as HTMLElement).style.color = "#8892a4";
-                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
-                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                }}
-              >
-                <span>{badge.emoji}</span>
-                {badge.name}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

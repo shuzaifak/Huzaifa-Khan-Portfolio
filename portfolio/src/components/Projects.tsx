@@ -2,132 +2,155 @@
 import { useState } from "react";
 import Image from "next/image";
 
+const PlayStoreIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3.18 23.99c.4.22.87.2 1.27-.03l13.1-7.34-2.87-2.87L3.18 23.99zM20.5 10.77L17.6 9.1 14.37 12l3.24 3.24 2.9-1.63c.83-.47.83-1.37 0-1.84zM1.07.18C.74.55.55 1.07.55 1.73v20.54l10.9-10.9L1.07.18zM14.37 12L4.45.17C4.05-.05 3.58-.04 3.18.18l11.5 11.5-.31.32z"/>
+  </svg>
+);
+
+const ArrowIcon = () => (
+  <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor">
+    <polygon points="5,3 19,12 5,21"/>
+  </svg>
+);
+
 const projects = [
   {
     id: "scalar-pos",
     name: "Scalar POS",
-    tagline: "Point of Sale & Inventory Management System",
-    description:
-      "A comprehensive mobile POS solution for retail businesses. Features real-time inventory tracking, sales analytics, employee management, purchase orders, and detailed financial reports. Built for a helmet & accessories retailer.",
-    tech: ["Flutter", "Dart", "Firebase", "Firestore", "Riverpod", "Hive"],
-    mockups: ["/mockups/scalar_1.png", "/mockups/scalar_2.png", "/mockups/scalar_3.png"],
+    tech: ["Flutter", "Firebase", "Firestore"],
+    mockups: ["/mockups/scalar_1.webp", "/mockups/scalar_2.webp", "/mockups/scalar_3.webp"],
     accent: "#00d4ff",
     live: false,
-    featured: true,
-    category: "Business",
+    inProgress: false,
+    bullets: [
+      "Built, marketed, and sold an independent POS product that fully digitized a manual business, enabling real-time sales tracking and inventory management for the first time",
+      "Developed comprehensive sales, inventory management, and inventory valuation modules with real-time Firestore sync for accurate stock tracking",
+      "Implemented financial reporting covering liabilities, profit and loss, and month-on-month business performance analytics",
+      "Integrated thermal receipt printing and JSON-based data communication with a pixel-perfect cashier interface that significantly reduced order processing time",
+    ],
   },
   {
     id: "bonanza-conexion",
     name: "Bonanza Conexión",
-    tagline: "Sustainable Student Commerce Platform",
-    description:
-      "A student-focused marketplace promoting eco-friendly and sustainable brands with exclusive student discounts. Live on Google Play Store with real users browsing green brands like Green Upshot, Reelife, and Grans.",
-    tech: ["Flutter", "Dart", "Firebase", "Google Maps", "Provider", "REST APIs"],
-    mockups: ["/mockups/bonanza_1.png", "/mockups/bonanza_2.png", "/mockups/bonanza_3.png"],
+    tech: ["Flutter", "Firebase", "Mercado Pago", "Cloud Functions"],
+    mockups: ["/mockups/bonanza_1.webp", "/mockups/bonanza_2.webp", "/mockups/bonanza_3.webp"],
     accent: "#00c896",
     live: true,
-    playStore: "https://play.google.com/store",
-    featured: true,
-    category: "E-Commerce",
+    playStore: "https://play.google.com/store/apps/details?id=com.ride.spanish",
+    bullets: [
+      "Built and deployed a production ride coordination platform end-to-end, now live on Google Play",
+      "Implemented role-based flows for passengers, drivers, and coordinators with manual and automatic ride assignment",
+      "Integrated Mercado Pago payment gateway via Firebase Cloud Functions for secure in-app wallet recharge and transaction processing",
+      "Developed pixel-perfect bilingual (Spanish/English) responsive interface with location-based pickup and real-time monitoring",
+    ],
   },
   {
     id: "reevall",
     name: "Reevall",
-    tagline: "Smart Product Discovery & Review App",
-    description:
-      "A social commerce platform where users discover, review, and share product recommendations. Swipe-based discovery UX, category filtering, and a clean feed of genuine user reviews. Live on Google Play Store.",
-    tech: ["Flutter", "Dart", "Firebase", "Firestore", "BLoC", "REST APIs"],
-    mockups: ["/mockups/reevall_1.png", "/mockups/reevall_2.png", "/mockups/reevall_3.png"],
+    tech: ["Flutter", "Firebase", "Firestore", "Storage", "Cloud Functions"],
+    mockups: ["/mockups/reevall_1.webp", "/mockups/reevall_2.webp", "/mockups/reevall_3.webp"],
     accent: "#7b2fff",
     live: true,
-    playStore: "https://play.google.com/store",
-    featured: true,
-    category: "Social",
+    playStore: "https://play.google.com/store/apps/details?id=com.reevall.app",
+    bullets: [
+      "Built Pakistan's first zero-waste campus marketplace enabling university students to buy and sell within their campus, live on Google Play",
+      "Refactored entire app architecture for scalability and implemented pixel-perfect responsive UI delivering a significantly smoother experience",
+      "Implemented secure in-app chat, listing management, push notifications via Cloud Functions, and student discount portal",
+    ],
   },
   {
     id: "bluepin",
     name: "Bluepin",
-    tagline: "Smart Parking Meets Convenience",
-    description:
-      "A sleek parking management app that helps users find, reserve, and navigate to parking spots. Features real-time availability, Google Maps integration, and a minimal dark UI. Currently in active development.",
-    tech: ["Flutter", "Dart", "Firebase", "Google Maps", "Riverpod"],
-    mockups: ["/mockups/bluepin_1.png", "/mockups/bluepin_2.png", "/mockups/bluepin_3.png"],
+    tech: ["Flutter", "Firebase", "Firestore", "Storage", "Stripe", "Google Maps API", "Cloud Functions"],
+    mockups: ["/mockups/bluepin_1.webp", "/mockups/bluepin_2.webp", "/mockups/bluepin_3.webp"],
     accent: "#00d4ff",
     live: false,
     inProgress: true,
-    category: "Utilities",
+    bullets: [
+      "Developing parking reservation system with integrated admin and user panels for comprehensive parking space management",
+      "Implementing Stripe payment integration via Cloud Functions and Google Maps API for real-time location-based parking search",
+      "Building responsive pixel-perfect UI with REST API and JSON integration for seamless cross-platform experience",
+    ],
   },
   {
     id: "ride-app",
-    name: "Transport Collective",
-    tagline: "Ride-Sharing & Logistics Platform",
-    description:
-      "A full-featured ride-hailing and logistics app supporting rides, freight, courier, group rides, and house shifting. Includes live driver tracking, fare estimation, and special promotions.",
-    tech: ["Flutter", "Dart", "Firebase", "Google Maps", "WebRTC", "Provider"],
-    mockups: ["/mockups/ride_1.png", "/mockups/ride_2.png", "/mockups/ride_3.png"],
+    name: "Ride App",
+    tech: ["Flutter", "Firebase", "Firestore", "Mapbox API"],
+    mockups: ["/mockups/ride_1.webp", "/mockups/ride_2.webp", "/mockups/ride_3.webp"],
     accent: "#ff6b35",
     live: false,
-    category: "Transport",
+    bullets: [
+      "Developed comprehensive ride-hailing application with Firebase and Firestore for real-time data management",
+      "Integrated Mapbox API for real-time navigation and route optimization with seamless user experience",
+      "Implemented dual user system with customer booking, ride history, driver reviews, and in-app communication",
+      "Created driver registration with category-based verification and direct customer-driver call functionality",
+    ],
   },
   {
     id: "studybuddy",
     name: "StudyBuddy",
-    tagline: "Productivity & Study Management App",
-    description:
-      "A comprehensive study assistant with task management, Pomodoro timer, calendar scheduling, and note-taking. Dark mode first design with daily progress tracking and personalized productivity tips.",
-    tech: ["Flutter", "Dart", "Hive", "Provider", "Local Notifications"],
-    mockups: ["/mockups/studybuddy_1.png", "/mockups/studybuddy_2.png", "/mockups/studybuddy_3.png"],
-    accent: "#7b2fff",
-    live: false,
-    category: "Productivity",
-  },
-  {
-    id: "cv-generator",
-    name: "CV Generator",
-    tagline: "Professional Resume Builder",
-    description:
-      "A mobile app for creating polished CVs and resumes with ease. Choose between full CV or concise resume formats, customize sections, and export as professional PDFs ready for job applications.",
-    tech: ["Flutter", "Dart", "PDF Generation", "Provider"],
-    mockups: ["/mockups/cvgen_1.png", "/mockups/cvgen_2.png", "/mockups/cvgen_3.png"],
+    tech: ["Flutter", "Provider", "Hive"],
+    mockups: ["/mockups/studybuddy_1.webp", "/mockups/studybuddy_2.webp", "/mockups/studybuddy_3.webp"],
     accent: "#4285f4",
     live: false,
-    category: "Productivity",
+    bullets: [
+      "Developed comprehensive study organization mobile application designed to help students manage their academic schedules and improve productivity through structured planning",
+      "Implemented assignment reminder system with calendar integration and to-do list functionality for efficient task management and deadline tracking",
+      "Created focus timer feature with productivity tips integration to enhance concentration and make studying more efficient and stress-free for students",
+      "Utilized Provider state management for seamless data flow and responsive user interface across all application features",
+    ],
+  },
+  {
+    id: "evoting",
+    name: "E-Voting System",
+    tech: ["Flutter", "Firebase", "Firestore"],
+    mockups: ["/mockups/vote_1.webp", "/mockups/vote_2.webp", "/mockups/vote_3.webp"],
+    accent: "#7b2fff",
+    live: false,
+    bullets: [
+      "Built secure digital voting application with biometric authentication including fingerprint and facial recognition",
+      "Implemented real-time analytics dashboard for voter turnout tracking using Firestore's scalable NoSQL architecture",
+      "Designed user friendly interface with comprehensive election management tools and candidate oversight for administrators",
+      "Developed interactive dashboards with data encryption protecting voter information and ensuring process integrity",
+    ],
+  },
+  {
+    id: "cv-maker",
+    name: "CV Maker – ATS Compliant",
+    tech: ["Flutter", "Hive", "Provider", "AI Integration"],
+    mockups: ["/mockups/cvgen_1.webp", "/mockups/cvgen_2.webp", "/mockups/cvgen_3.webp"],
+    accent: "#4285f4",
+    live: false,
+    bullets: [
+      "Built free, privacy-focused resume builder optimized for ATS with AI-powered scoring and personalized improvement feedback",
+      "Designed fully offline application with on-device Hive storage ensuring complete privacy with no cloud dependency",
+      "Integrated PDF generation with customizable fonts and intuitive file handling for seamless user experience",
+    ],
   },
   {
     id: "motion-tracking",
     name: "Motion Tracking Analyzer",
-    tagline: "AI-Powered Pose & Motion Analysis",
-    description:
-      "A cross-platform app leveraging computer vision and ML to analyze human motion and pose estimation in real time. Useful for fitness coaching, sports training, and physical rehabilitation.",
-    tech: ["Flutter", "Dart", "Python", "TensorFlow", "ML Kit", "OpenCV"],
-    mockups: ["/mockups/motion_1.png", "/mockups/motion_2.png", "/mockups/motion_3.png"],
+    tech: ["Flutter", "Provider", "Hive", "REST APIs"],
+    mockups: ["/mockups/motion_1.webp", "/mockups/motion_2.webp", "/mockups/motion_3.webp"],
     accent: "#ff4081",
     live: false,
-    category: "AI / ML",
+    bullets: [
+      "Developed Flutter frontend integrated with Python backend via REST APIs for Google ML model motion analysis",
+      "Implemented categorized movement recording, Hive local storage, and Provider state management for efficient data handling",
+    ],
   },
   {
-    id: "plantorix",
-    name: "Plantorix",
-    tagline: "Smart Plant Care & Garden Management",
-    description:
-      "A plant care companion app with reminders for watering, fertilizing, and pruning. Features plant disease diagnosis, a beautiful plant library, and progress tracking for your indoor garden.",
-    tech: ["Flutter", "Dart", "Firebase", "Firestore", "Provider"],
-    mockups: ["/mockups/plantorix_1.png", "/mockups/plantorix_2.png", "/mockups/plantorix_3.png"],
+    id: "plant-care",
+    name: "Plant Care Companion",
+    tech: ["Flutter", "Provider", "REST APIs"],
+    mockups: ["/mockups/plantorix_1.webp", "/mockups/plantorix_2.webp", "/mockups/plantorix_3.webp"],
     accent: "#00c896",
     live: false,
-    category: "Lifestyle",
-  },
-  {
-    id: "vote",
-    name: "Vote App",
-    tagline: "Digital Voting & Poll Platform",
-    description:
-      "A secure digital voting platform enabling organizations and communities to conduct transparent polls and elections. Includes admin panel, real-time results, and multi-level authentication.",
-    tech: ["Flutter", "Dart", "Firebase", "Authentication", "Firestore"],
-    mockups: ["/mockups/vote_1.png", "/mockups/vote_2.png", "/mockups/vote_3.png"],
-    accent: "#4285f4",
-    live: false,
-    category: "Civic Tech",
+    bullets: [
+      "Developed Flutter frontend integrated with ML model for plant health monitoring and disease identification via camera",
+      "Implemented customizable watering reminder system and camera integration for ML-based plant health detection",
+    ],
   },
 ];
 
@@ -142,39 +165,33 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       style={{
         background: "rgba(255,255,255,0.03)",
         backdropFilter: "blur(20px)",
-        border: `1px solid ${hovered ? project.accent + "40" : "rgba(255,255,255,0.07)"}`,
+        border: `1px solid ${hovered ? project.accent + "35" : "rgba(255,255,255,0.07)"}`,
         borderRadius: 20,
         overflow: "hidden",
         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         transform: hovered ? "translateY(-8px)" : "translateY(0)",
-        boxShadow: hovered ? `0 20px 60px ${project.accent}20` : "none",
+        boxShadow: hovered ? `0 20px 60px ${project.accent}18` : "none",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      {/* Mockup Gallery */}
-      <div
-        style={{
-          position: "relative",
-          background: `linear-gradient(135deg, ${project.accent}12, rgba(0,0,0,0.3))`,
-          padding: "28px 24px 0",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-end",
-          gap: 12,
-          minHeight: 260,
-          overflow: "hidden",
-        }}
-      >
+      {/* Mockup Gallery (Clean, no hovering labels) */}
+      <div style={{
+        position: "relative",
+        background: `linear-gradient(135deg, ${project.accent}10, rgba(0,0,0,0.25))`,
+        padding: "28px 24px 0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-end",
+        gap: 10,
+        minHeight: 260,
+        overflow: "hidden",
+      }}>
         {/* Glow behind phones */}
         <div style={{
-          position: "absolute",
-          bottom: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "70%",
-          height: "60%",
-          background: `radial-gradient(ellipse, ${project.accent}20 0%, transparent 70%)`,
+          position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
+          width: "70%", height: "60%",
+          background: `radial-gradient(ellipse, ${project.accent}18 0%, transparent 70%)`,
           pointerEvents: "none",
         }} />
 
@@ -184,158 +201,108 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
             onClick={() => setCurrentMockup(i)}
             style={{
               position: "relative",
-              width: i === currentMockup ? 120 : 80,
-              height: i === currentMockup ? 240 : 160,
+              width: i === currentMockup ? 118 : 78,
+              height: i === currentMockup ? 236 : 156,
               borderRadius: 16,
               overflow: "hidden",
               cursor: "pointer",
               transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-              border: i === currentMockup
-                ? `2px solid ${project.accent}`
-                : "2px solid rgba(255,255,255,0.1)",
-              opacity: i === currentMockup ? 1 : 0.6,
+              border: i === currentMockup ? `2px solid ${project.accent}` : "2px solid rgba(255,255,255,0.08)",
+              opacity: i === currentMockup ? 1 : 0.55,
               flexShrink: 0,
-              boxShadow: i === currentMockup ? `0 8px 24px ${project.accent}30` : "none",
+              boxShadow: i === currentMockup ? `0 8px 28px ${project.accent}28` : "none",
             }}
           >
-            <Image
-              src={src}
-              alt={`${project.name} mockup ${i + 1}`}
-              fill
-              style={{ objectFit: "cover" }}
-              sizes="120px"
-            />
+            <Image src={src} alt={`${project.name} screenshot ${i + 1}`} fill style={{ objectFit: "cover" }} sizes="120px" />
           </div>
         ))}
-
-        {/* Badges */}
-        <div style={{ position: "absolute", top: 12, left: 12, display: "flex", gap: 6 }}>
-          {project.live && (
-            <span style={{
-              padding: "4px 10px",
-              borderRadius: 50,
-              fontSize: 11,
-              fontWeight: 700,
-              background: "rgba(0,200,150,0.15)",
-              color: "#00c896",
-              border: "1px solid rgba(0,200,150,0.3)",
-              fontFamily: "Poppins, sans-serif",
-              letterSpacing: "0.05em",
-            }}>
-              ● LIVE
-            </span>
-          )}
-          {project.inProgress && (
-            <span style={{
-              padding: "4px 10px",
-              borderRadius: 50,
-              fontSize: 11,
-              fontWeight: 700,
-              background: "rgba(255,170,0,0.15)",
-              color: "#ffaa00",
-              border: "1px solid rgba(255,170,0,0.3)",
-              fontFamily: "Poppins, sans-serif",
-            }}>
-              IN PROGRESS
-            </span>
-          )}
-          <span style={{
-            padding: "4px 10px",
-            borderRadius: 50,
-            fontSize: 11,
-            fontWeight: 600,
-            background: "rgba(255,255,255,0.06)",
-            color: "#8892a4",
-            fontFamily: "Poppins, sans-serif",
-          }}>
-            {project.category}
-          </span>
-        </div>
       </div>
 
       {/* Content */}
       <div style={{ padding: "24px", flex: 1, display: "flex", flexDirection: "column" }}>
-        <h3
-          style={{
-            fontSize: 18,
-            fontWeight: 700,
-            color: "#f0f4ff",
-            marginBottom: 6,
-            fontFamily: "Poppins, sans-serif",
-          }}
-        >
+        {/* Clean layout for Labels - Moved here below the picture */}
+        {(project.live || project.inProgress) && (
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
+            {project.live && (
+              <span style={{
+                padding: "4px 12px", borderRadius: 50, fontSize: 10, fontWeight: 700,
+                background: "rgba(0,200,150,0.12)", color: "#00c896",
+                border: "1px solid rgba(0,200,150,0.25)", fontFamily: "Poppins, sans-serif",
+                letterSpacing: "0.05em",
+              }}>
+                LIVE
+              </span>
+            )}
+            {project.inProgress && (
+              <span style={{
+                padding: "4px 12px", borderRadius: 50, fontSize: 10, fontWeight: 700,
+                background: "rgba(255,170,0,0.12)", color: "#ffaa00",
+                border: "1px solid rgba(255,170,0,0.25)", fontFamily: "Poppins, sans-serif",
+                letterSpacing: "0.05em",
+              }}>
+                IN PROGRESS
+              </span>
+            )}
+          </div>
+        )}
+
+        <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f0f4ff", marginBottom: 12, fontFamily: "Poppins, sans-serif" }}>
           {project.name}
         </h3>
-        <p
-          style={{
-            fontSize: 13,
-            color: project.accent,
-            fontWeight: 600,
-            fontFamily: "Poppins, sans-serif",
-            marginBottom: 12,
-          }}
-        >
-          {project.tagline}
-        </p>
-        <p
-          style={{
-            fontSize: 13,
-            color: "#6b7a94",
-            lineHeight: 1.7,
-            fontFamily: "Poppins, sans-serif",
-            flex: 1,
-            marginBottom: 20,
-          }}
-        >
-          {project.description}
-        </p>
+
+        {/* Bullet points from CV */}
+        <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, flex: 1, marginBottom: 20 }}>
+          {project.bullets.map((b, j) => (
+            <li key={j} style={{
+              fontSize: 13, color: "#6b7a94", paddingLeft: 18, position: "relative",
+              lineHeight: 1.65, fontFamily: "Poppins, sans-serif",
+            }}>
+              <span style={{ position: "absolute", left: 0, color: project.accent, top: 5 }}>
+                <ArrowIcon />
+              </span>
+              {b}
+            </li>
+          ))}
+        </ul>
 
         {/* Tech tags */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: project.live ? 16 : 0 }}>
           {project.tech.map((t) => (
-            <span
-              key={t}
-              style={{
-                padding: "3px 10px",
-                borderRadius: 50,
-                fontSize: 11,
-                fontWeight: 500,
-                border: `1px solid ${project.accent}30`,
-                color: project.accent,
-                background: `${project.accent}0d`,
-                fontFamily: "Poppins, sans-serif",
-              }}
-            >
+            <span key={t} style={{
+              padding: "3px 10px", borderRadius: 50, fontSize: 11, fontWeight: 500,
+              border: `1px solid ${project.accent}28`,
+              color: project.accent,
+              background: `${project.accent}0a`,
+              fontFamily: "Poppins, sans-serif",
+            }}>
               {t}
             </span>
           ))}
         </div>
 
-        {/* CTA */}
-        {project.live && project.playStore && (
+        {/* Play Store CTA */}
+        {"playStore" in project && project.playStore && (
           <a
-            href={project.playStore}
+            href={project.playStore as string}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              padding: "8px 16px",
-              borderRadius: 50,
-              fontSize: 13,
-              fontWeight: 600,
-              background: `${project.accent}15`,
-              color: project.accent,
-              border: `1px solid ${project.accent}30`,
-              textDecoration: "none",
-              fontFamily: "Poppins, sans-serif",
-              transition: "all 0.2s",
+              display: "inline-flex", alignItems: "center", gap: 8, padding: "9px 18px",
+              borderRadius: 50, fontSize: 13, fontWeight: 600,
+              background: `${project.accent}12`, color: project.accent,
+              border: `1px solid ${project.accent}28`, textDecoration: "none",
+              fontFamily: "Poppins, sans-serif", transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = `${project.accent}22`;
+              (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = `${project.accent}12`;
+              (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
             }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3.18 23.99c.4.22.87.2 1.27-.03l13.1-7.34-2.87-2.87L3.18 23.99zM20.5 10.77L17.6 9.1 14.37 12l3.24 3.24 2.9-1.63c.83-.47.83-1.37 0-1.84zM1.07.18C.74.55.55 1.07.55 1.73v20.54l10.9-10.9L1.07.18zM14.37 12L4.45.17C4.05-.05 3.58-.04 3.18.18l11.5 11.5-0.31.32z"/>
-            </svg>
+            <PlayStoreIcon />
             View on Play Store
           </a>
         )}
@@ -345,87 +312,21 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 }
 
 export default function Projects() {
-  const [filter, setFilter] = useState("All");
-  const categories = ["All", "Business", "E-Commerce", "Social", "Utilities", "Transport", "Productivity", "AI / ML", "Lifestyle", "Civic Tech"];
-
-  const filtered = filter === "All" ? projects : projects.filter((p) => p.category === filter);
-
   return (
-    <section
-      id="projects"
-      style={{
-        padding: "120px 0",
-        position: "relative",
-        zIndex: 1,
-      }}
-    >
+    <section id="projects" style={{ padding: "120px 0", position: "relative", zIndex: 1 }}>
       <div className="section-container">
         <div className="section-heading">
           <span className="label">Portfolio</span>
-          <h2>
-            Featured{" "}
-            <span className="gradient-text">Projects</span>
-          </h2>
-          <p>
-            A showcase of mobile applications I&apos;ve designed and built — from concept to App Store.
-          </p>
+          <h2>Featured <span className="gradient-text">Projects</span></h2>
+          <p>A showcase of applications I have designed, built, and shipped — from concept to production.</p>
         </div>
 
-        {/* Filter Pills */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 8,
-            justifyContent: "center",
-            marginBottom: 48,
-          }}
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              style={{
-                padding: "8px 20px",
-                borderRadius: 50,
-                fontSize: 13,
-                fontWeight: 500,
-                fontFamily: "Poppins, sans-serif",
-                cursor: "pointer",
-                transition: "all 0.2s",
-                border: filter === cat ? "none" : "1px solid rgba(255,255,255,0.1)",
-                background: filter === cat
-                  ? "linear-gradient(135deg, #00d4ff, #7b2fff)"
-                  : "rgba(255,255,255,0.04)",
-                color: filter === cat ? "white" : "#8892a4",
-                boxShadow: filter === cat ? "0 4px 15px rgba(0,212,255,0.25)" : "none",
-              }}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-            gap: 28,
-          }}
-          className="projects-grid"
-        >
-          {filtered.map((project) => (
+        <div className="projects-grid">
+          {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>
-
-      <style jsx global>{`
-        @media (max-width: 768px) {
-          .projects-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }
