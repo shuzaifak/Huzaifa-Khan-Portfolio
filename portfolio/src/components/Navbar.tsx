@@ -45,11 +45,11 @@ export default function Navbar() {
           zIndex: 1000,
           padding: scrolled ? "12px 0" : "20px 0",
           background: scrolled
-            ? "rgba(6, 9, 18, 0.85)"
+            ? "rgba(0, 0, 0, 0.85)"
             : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
@@ -70,11 +70,9 @@ export default function Navbar() {
               fontSize: 22,
               fontWeight: 800,
               textDecoration: "none",
-              background: "linear-gradient(135deg, #00d4ff, #7b2fff)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "#ffffff",
               letterSpacing: "-0.03em",
+              fontFamily: "Poppins, sans-serif",
             }}
           >
             HK.
@@ -101,20 +99,20 @@ export default function Navbar() {
                     fontSize: 14,
                     fontWeight: 500,
                     textDecoration: "none",
-                    color: isActive ? "#00d4ff" : "#8892a4",
+                    color: isActive ? "#ffffff" : "#666666",
                     borderRadius: 8,
                     transition: "all 0.2s",
-                    background: isActive ? "rgba(0,212,255,0.08)" : "transparent",
+                    background: isActive ? "rgba(255,255,255,0.06)" : "transparent",
                     fontFamily: "Poppins, sans-serif",
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
-                      (e.target as HTMLElement).style.color = "#f0f4ff";
+                      (e.target as HTMLElement).style.color = "#cccccc";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isActive) {
-                      (e.target as HTMLElement).style.color = "#8892a4";
+                      (e.target as HTMLElement).style.color = "#666666";
                     }
                   }}
                 >
@@ -132,20 +130,20 @@ export default function Navbar() {
                 fontSize: 13,
                 fontWeight: 600,
                 textDecoration: "none",
-                background: "linear-gradient(135deg, #00d4ff, #7b2fff)",
-                color: "white",
+                background: "#ffffff",
+                color: "#000000",
                 borderRadius: 50,
                 transition: "all 0.3s",
                 fontFamily: "Poppins, sans-serif",
-                boxShadow: "0 2px 12px rgba(0,212,255,0.25)",
+                boxShadow: "0 2px 12px rgba(255,255,255,0.08)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(0,212,255,0.4)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(255,255,255,0.12)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,212,255,0.25)";
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(255,255,255,0.08)";
               }}
             >
               Resume
@@ -162,7 +160,7 @@ export default function Navbar() {
               border: "none",
               cursor: "pointer",
               padding: 8,
-              color: "#f0f4ff",
+              color: "#ededed",
               flexDirection: "column",
               gap: 5,
             }}
@@ -170,19 +168,19 @@ export default function Navbar() {
           >
             <span style={{
               display: "block", width: 22, height: 2,
-              background: "#f0f4ff", borderRadius: 2,
+              background: "#ededed", borderRadius: 2,
               transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none",
               transition: "all 0.3s",
             }} />
             <span style={{
               display: "block", width: 22, height: 2,
-              background: "#f0f4ff", borderRadius: 2,
+              background: "#ededed", borderRadius: 2,
               opacity: menuOpen ? 0 : 1,
               transition: "all 0.3s",
             }} />
             <span style={{
               display: "block", width: 22, height: 2,
-              background: "#f0f4ff", borderRadius: 2,
+              background: "#ededed", borderRadius: 2,
               transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none",
               transition: "all 0.3s",
             }} />
@@ -194,12 +192,12 @@ export default function Navbar() {
           <div
             style={{
               padding: "16px 24px 24px",
-              background: "rgba(6,9,18,0.97)",
+              background: "rgba(0,0,0,0.97)",
               backdropFilter: "blur(20px)",
               display: "flex",
               flexDirection: "column",
               gap: 4,
-              borderTop: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid rgba(255,255,255,0.05)",
             }}
           >
             {navLinks.map((link) => (
@@ -211,7 +209,7 @@ export default function Navbar() {
                   padding: "12px 16px",
                   fontSize: 15,
                   fontWeight: 500,
-                  color: "#8892a4",
+                  color: "#777777",
                   textDecoration: "none",
                   borderRadius: 8,
                   fontFamily: "Poppins, sans-serif",
@@ -229,7 +227,7 @@ export default function Navbar() {
                 padding: "12px 16px",
                 fontSize: 15,
                 fontWeight: 600,
-                color: "#00d4ff",
+                color: "#ffffff",
                 textDecoration: "none",
                 fontFamily: "Poppins, sans-serif",
               }}

@@ -1,4 +1,5 @@
 "use client";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 // SVG Icons for skill group headers
 const MobileIcon = () => (
@@ -39,7 +40,6 @@ const skillGroups = [
   {
     title: "Mobile",
     icon: <MobileIcon />,
-    accent: "#00d4ff",
     skills: [
       "Flutter", "Dart", "iOS Development", "Android Development",
       "Cross-Platform Development", "Provider", "MVVM", "UI/UX Design",
@@ -48,7 +48,6 @@ const skillGroups = [
   {
     title: "Backend",
     icon: <ServerIcon />,
-    accent: "#7b2fff",
     skills: [
       "Firebase", "Firestore", "Supabase", "MySQL", "SQLite",
       "Spring Boot", "Cloud Functions", "REST APIs", "WebSockets",
@@ -57,7 +56,6 @@ const skillGroups = [
   {
     title: "Integrations",
     icon: <PuzzleIcon />,
-    accent: "#ff6b35",
     skills: [
       "Mapbox", "Google Maps", "Stripe", "Mercado Pago",
       "ML Models", "Thermal Printing",
@@ -66,24 +64,21 @@ const skillGroups = [
   {
     title: "Languages",
     icon: <CodeIcon />,
-    accent: "#00c896",
     skills: ["Dart", "Java", "C++"],
   },
   {
     title: "Tools",
     icon: <ToolIcon />,
-    accent: "#4285f4",
     skills: ["Android Studio", "VS Code", "Git", "GitHub", "Docker"],
   },
   {
     title: "Methodology",
     icon: <AgileIcon />,
-    accent: "#ff4081",
     skills: ["Agile Development"],
   },
 ];
 
-function SkillChip({ name, accent }: { name: string; accent: string }) {
+function SkillChip({ name }: { name: string }) {
   return (
     <span
       style={{
@@ -96,32 +91,32 @@ function SkillChip({ name, accent }: { name: string; accent: string }) {
         fontWeight: 500,
         background: "rgba(255, 255, 255, 0.02)",
         border: "1px solid rgba(255, 255, 255, 0.05)",
-        color: "#a0aec0",
+        color: "#888888",
         fontFamily: "Poppins, sans-serif",
         transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         cursor: "default",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.background = `${accent}12`;
-        (e.currentTarget as HTMLElement).style.borderColor = `${accent}40`;
-        (e.currentTarget as HTMLElement).style.color = "#f0f4ff";
+        (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.15)";
+        (e.currentTarget as HTMLElement).style.color = "#ededed";
         (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
-        (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 20px ${accent}15`;
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 20px rgba(255,255,255,0.03)";
         const dot = (e.currentTarget as HTMLElement).querySelector(".bullet-dot") as HTMLElement;
         if (dot) {
-          dot.style.background = accent;
-          dot.style.boxShadow = `0 0 8px ${accent}`;
+          dot.style.background = "#ffffff";
+          dot.style.boxShadow = "0 0 8px rgba(255,255,255,0.5)";
         }
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.02)";
         (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.05)";
-        (e.currentTarget as HTMLElement).style.color = "#a0aec0";
+        (e.currentTarget as HTMLElement).style.color = "#888888";
         (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
         (e.currentTarget as HTMLElement).style.boxShadow = "none";
         const dot = (e.currentTarget as HTMLElement).querySelector(".bullet-dot") as HTMLElement;
         if (dot) {
-          dot.style.background = "#4a5568";
+          dot.style.background = "#3a3a3a";
           dot.style.boxShadow = "none";
         }
       }}
@@ -132,7 +127,7 @@ function SkillChip({ name, accent }: { name: string; accent: string }) {
           width: 6,
           height: 6,
           borderRadius: "50%",
-          background: "#4a5568",
+          background: "#3a3a3a",
           transition: "all 0.3s",
         }}
       />
@@ -152,7 +147,7 @@ export default function Skills() {
         overflow: "hidden",
       }}
     >
-      {/* Dynamic ambient background glow specifically for this section */}
+      {/* Subtle ambient glow */}
       <div
         style={{
           position: "absolute",
@@ -161,87 +156,90 @@ export default function Skills() {
           transform: "translate(-50%, -50%)",
           width: "800px",
           height: "400px",
-          background: "radial-gradient(ellipse, rgba(0, 212, 255, 0.04) 0%, rgba(123, 47, 255, 0.03) 50%, transparent 100%)",
+          background: "radial-gradient(ellipse, rgba(255,255,255,0.015) 0%, transparent 100%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
 
       <div className="section-container" style={{ position: "relative", zIndex: 1 }}>
-        <div className="section-heading">
-          <span className="label">Skills</span>
-          <h2>Technologies &amp; <span className="gradient-text">Expertise</span></h2>
-          <p>My technical toolkit for building world-class mobile experiences</p>
-        </div>
+        <AnimatedSection>
+          <div className="section-heading">
+            <span className="label">Skills</span>
+            <h2>Technologies &amp; <span className="gradient-text">Expertise</span></h2>
+            <p>My technical toolkit for building world-class mobile experiences</p>
+          </div>
+        </AnimatedSection>
 
-        <div className="skills-grid">
+        <StaggerContainer staggerDelay={0.08} className="skills-grid">
           {skillGroups.map((group) => (
-            <div
-              key={group.title}
-              className="glass-card"
-              style={{
-                padding: "32px",
-                borderColor: "rgba(255, 255, 255, 0.06)",
-                position: "relative",
-                overflow: "hidden",
-                background: "linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = `${group.accent}30`;
-                (e.currentTarget as HTMLElement).style.boxShadow = `0 15px 40px ${group.accent}0a`;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.06)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
-              }}
-            >
-              {/* Subtle top indicator line */}
+            <StaggerItem key={group.title}>
               <div
+                className="glass-card"
                 style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "3px",
-                  background: `linear-gradient(90deg, ${group.accent}, transparent)`,
+                  padding: "32px",
+                  borderColor: "rgba(255, 255, 255, 0.05)",
+                  position: "relative",
+                  overflow: "hidden",
+                  background: "linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%)",
                 }}
-              />
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 15px 40px rgba(255,255,255,0.02)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.05)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                {/* Top indicator line */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "2px",
+                    background: "linear-gradient(90deg, rgba(255,255,255,0.3), transparent)",
+                  }}
+                />
 
-              {/* Card header */}
-              <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
-                <div style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 12,
-                  background: `${group.accent}12`,
-                  border: `1px solid ${group.accent}25`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: group.accent,
-                }}>
-                  {group.icon}
+                {/* Card header */}
+                <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
+                  <div style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 12,
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#999999",
+                  }}>
+                    {group.icon}
+                  </div>
+                  <h3 style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "#ededed",
+                    fontFamily: "Poppins, sans-serif",
+                    letterSpacing: "-0.01em"
+                  }}>
+                    {group.title}
+                  </h3>
                 </div>
-                <h3 style={{
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: "#f0f4ff",
-                  fontFamily: "Poppins, sans-serif",
-                  letterSpacing: "-0.01em"
-                }}>
-                  {group.title}
-                </h3>
-              </div>
 
-              {/* Skill chips */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-                {group.skills.map((skill) => (
-                  <SkillChip key={skill} name={skill} accent={group.accent} />
-                ))}
+                {/* Skill chips */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  {group.skills.map((skill) => (
+                    <SkillChip key={skill} name={skill} />
+                  ))}
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 const PlayStoreIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -20,7 +21,7 @@ const projects = [
     name: "Scalar POS",
     tech: ["Flutter", "Firebase", "Firestore"],
     mockups: ["/mockups/scalar_1.webp", "/mockups/scalar_2.webp", "/mockups/scalar_3.webp"],
-    accent: "#00d4ff",
+    accent: "#ffffff",
     live: false,
     inProgress: false,
     bullets: [
@@ -35,7 +36,7 @@ const projects = [
     name: "Bonanza Conexión",
     tech: ["Flutter", "Firebase", "Mercado Pago", "Cloud Functions"],
     mockups: ["/mockups/bonanza_1.webp", "/mockups/bonanza_2.webp", "/mockups/bonanza_3.webp"],
-    accent: "#00c896",
+    accent: "#ffffff",
     live: true,
     playStore: "https://play.google.com/store/apps/details?id=com.ride.spanish",
     bullets: [
@@ -50,7 +51,7 @@ const projects = [
     name: "Reevall",
     tech: ["Flutter", "Firebase", "Firestore", "Storage", "Cloud Functions"],
     mockups: ["/mockups/reevall_1.webp", "/mockups/reevall_2.webp", "/mockups/reevall_3.webp"],
-    accent: "#7b2fff",
+    accent: "#ffffff",
     live: true,
     playStore: "https://play.google.com/store/apps/details?id=com.reevall.app",
     bullets: [
@@ -64,7 +65,7 @@ const projects = [
     name: "Bluepin",
     tech: ["Flutter", "Firebase", "Firestore", "Storage", "Stripe", "Google Maps API", "Cloud Functions"],
     mockups: ["/mockups/bluepin_1.webp", "/mockups/bluepin_2.webp", "/mockups/bluepin_3.webp"],
-    accent: "#00d4ff",
+    accent: "#ffffff",
     live: false,
     inProgress: true,
     bullets: [
@@ -78,7 +79,7 @@ const projects = [
     name: "Ride App",
     tech: ["Flutter", "Firebase", "Firestore", "Mapbox API"],
     mockups: ["/mockups/ride_1.webp", "/mockups/ride_2.webp", "/mockups/ride_3.webp"],
-    accent: "#ff6b35",
+    accent: "#ffffff",
     live: false,
     bullets: [
       "Developed comprehensive ride-hailing application with Firebase and Firestore for real-time data management",
@@ -92,7 +93,7 @@ const projects = [
     name: "StudyBuddy",
     tech: ["Flutter", "Provider", "Hive"],
     mockups: ["/mockups/studybuddy_1.webp", "/mockups/studybuddy_2.webp", "/mockups/studybuddy_3.webp"],
-    accent: "#4285f4",
+    accent: "#ffffff",
     live: false,
     bullets: [
       "Developed comprehensive study organization mobile application designed to help students manage their academic schedules and improve productivity through structured planning",
@@ -106,7 +107,7 @@ const projects = [
     name: "E-Voting System",
     tech: ["Flutter", "Firebase", "Firestore"],
     mockups: ["/mockups/vote_1.webp", "/mockups/vote_2.webp", "/mockups/vote_3.webp"],
-    accent: "#7b2fff",
+    accent: "#ffffff",
     live: false,
     bullets: [
       "Built secure digital voting application with biometric authentication including fingerprint and facial recognition",
@@ -120,7 +121,7 @@ const projects = [
     name: "CV Maker – ATS Compliant",
     tech: ["Flutter", "Hive", "Provider", "AI Integration"],
     mockups: ["/mockups/cvgen_1.webp", "/mockups/cvgen_2.webp", "/mockups/cvgen_3.webp"],
-    accent: "#4285f4",
+    accent: "#ffffff",
     live: false,
     bullets: [
       "Built free, privacy-focused resume builder optimized for ATS with AI-powered scoring and personalized improvement feedback",
@@ -133,7 +134,7 @@ const projects = [
     name: "Motion Tracking Analyzer",
     tech: ["Flutter", "Provider", "Hive", "REST APIs"],
     mockups: ["/mockups/motion_1.webp", "/mockups/motion_2.webp", "/mockups/motion_3.webp"],
-    accent: "#ff4081",
+    accent: "#ffffff",
     live: false,
     bullets: [
       "Developed Flutter frontend integrated with Python backend via REST APIs for Google ML model motion analysis",
@@ -145,7 +146,7 @@ const projects = [
     name: "Plant Care Companion",
     tech: ["Flutter", "Provider", "REST APIs"],
     mockups: ["/mockups/plantorix_1.webp", "/mockups/plantorix_2.webp", "/mockups/plantorix_3.webp"],
-    accent: "#00c896",
+    accent: "#ffffff",
     live: false,
     bullets: [
       "Developed Flutter frontend integrated with ML model for plant health monitoring and disease identification via camera",
@@ -163,22 +164,22 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: "rgba(255,255,255,0.03)",
+        background: "rgba(255,255,255,0.02)",
         backdropFilter: "blur(20px)",
-        border: `1px solid ${hovered ? project.accent + "35" : "rgba(255,255,255,0.07)"}`,
+        border: `1px solid ${hovered ? "rgba(255,255,255,0.12)" : "rgba(255,255,255,0.05)"}`,
         borderRadius: 20,
         overflow: "hidden",
         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         transform: hovered ? "translateY(-8px)" : "translateY(0)",
-        boxShadow: hovered ? `0 20px 60px ${project.accent}18` : "none",
+        boxShadow: hovered ? "0 20px 60px rgba(255,255,255,0.04)" : "none",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      {/* Mockup Gallery (Clean, no hovering labels) */}
+      {/* Mockup Gallery */}
       <div style={{
         position: "relative",
-        background: `linear-gradient(135deg, ${project.accent}10, rgba(0,0,0,0.25))`,
+        background: "linear-gradient(135deg, rgba(255,255,255,0.03), rgba(0,0,0,0.25))",
         padding: "28px 24px 0",
         display: "flex",
         justifyContent: "center",
@@ -191,7 +192,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
         <div style={{
           position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)",
           width: "70%", height: "60%",
-          background: `radial-gradient(ellipse, ${project.accent}18 0%, transparent 70%)`,
+          background: "radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }} />
 
@@ -207,10 +208,10 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
               overflow: "hidden",
               cursor: "pointer",
               transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-              border: i === currentMockup ? `2px solid ${project.accent}` : "2px solid rgba(255,255,255,0.08)",
-              opacity: i === currentMockup ? 1 : 0.55,
+              border: i === currentMockup ? "2px solid rgba(255,255,255,0.4)" : "2px solid rgba(255,255,255,0.06)",
+              opacity: i === currentMockup ? 1 : 0.45,
               flexShrink: 0,
-              boxShadow: i === currentMockup ? `0 8px 28px ${project.accent}28` : "none",
+              boxShadow: i === currentMockup ? "0 8px 28px rgba(255,255,255,0.06)" : "none",
             }}
           >
             <Image src={src} alt={`${project.name} screenshot ${i + 1}`} fill style={{ objectFit: "cover" }} sizes="120px" />
@@ -220,14 +221,14 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 
       {/* Content */}
       <div style={{ padding: "24px", flex: 1, display: "flex", flexDirection: "column" }}>
-        {/* Clean layout for Labels - Moved here below the picture */}
+        {/* Status labels */}
         {(project.live || project.inProgress) && (
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 }}>
             {project.live && (
               <span style={{
                 padding: "4px 12px", borderRadius: 50, fontSize: 10, fontWeight: 700,
-                background: "rgba(0,200,150,0.12)", color: "#00c896",
-                border: "1px solid rgba(0,200,150,0.25)", fontFamily: "Poppins, sans-serif",
+                background: "rgba(100,200,100,0.08)", color: "#6b9e6b",
+                border: "1px solid rgba(100,200,100,0.15)", fontFamily: "Poppins, sans-serif",
                 letterSpacing: "0.05em",
               }}>
                 LIVE
@@ -236,8 +237,8 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
             {project.inProgress && (
               <span style={{
                 padding: "4px 12px", borderRadius: 50, fontSize: 10, fontWeight: 700,
-                background: "rgba(255,170,0,0.12)", color: "#ffaa00",
-                border: "1px solid rgba(255,170,0,0.25)", fontFamily: "Poppins, sans-serif",
+                background: "rgba(180,150,80,0.08)", color: "#b09060",
+                border: "1px solid rgba(180,150,80,0.15)", fontFamily: "Poppins, sans-serif",
                 letterSpacing: "0.05em",
               }}>
                 IN PROGRESS
@@ -246,18 +247,18 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
           </div>
         )}
 
-        <h3 style={{ fontSize: 18, fontWeight: 700, color: "#f0f4ff", marginBottom: 12, fontFamily: "Poppins, sans-serif" }}>
+        <h3 style={{ fontSize: 18, fontWeight: 700, color: "#ededed", marginBottom: 12, fontFamily: "Poppins, sans-serif" }}>
           {project.name}
         </h3>
 
-        {/* Bullet points from CV */}
+        {/* Bullet points */}
         <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10, flex: 1, marginBottom: 20 }}>
           {project.bullets.map((b, j) => (
             <li key={j} style={{
-              fontSize: 13, color: "#6b7a94", paddingLeft: 18, position: "relative",
+              fontSize: 13, color: "#555555", paddingLeft: 18, position: "relative",
               lineHeight: 1.65, fontFamily: "Poppins, sans-serif",
             }}>
-              <span style={{ position: "absolute", left: 0, color: project.accent, top: 5 }}>
+              <span style={{ position: "absolute", left: 0, color: "#555555", top: 5 }}>
                 <ArrowIcon />
               </span>
               {b}
@@ -270,9 +271,9 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
           {project.tech.map((t) => (
             <span key={t} style={{
               padding: "3px 10px", borderRadius: 50, fontSize: 11, fontWeight: 500,
-              border: `1px solid ${project.accent}28`,
-              color: project.accent,
-              background: `${project.accent}0a`,
+              border: "1px solid rgba(255,255,255,0.08)",
+              color: "#888888",
+              background: "rgba(255,255,255,0.03)",
               fontFamily: "Poppins, sans-serif",
             }}>
               {t}
@@ -289,16 +290,16 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
             style={{
               display: "inline-flex", alignItems: "center", gap: 8, padding: "9px 18px",
               borderRadius: 50, fontSize: 13, fontWeight: 600,
-              background: `${project.accent}12`, color: project.accent,
-              border: `1px solid ${project.accent}28`, textDecoration: "none",
+              background: "rgba(255,255,255,0.04)", color: "#cccccc",
+              border: "1px solid rgba(255,255,255,0.1)", textDecoration: "none",
               fontFamily: "Poppins, sans-serif", transition: "all 0.2s",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.background = `${project.accent}22`;
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
               (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.background = `${project.accent}12`;
+              (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
               (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
             }}
           >
@@ -315,17 +316,21 @@ export default function Projects() {
   return (
     <section id="projects" style={{ padding: "120px 0", position: "relative", zIndex: 1 }}>
       <div className="section-container">
-        <div className="section-heading">
-          <span className="label">Portfolio</span>
-          <h2>Featured <span className="gradient-text">Projects</span></h2>
-          <p>A showcase of applications I have designed, built, and shipped — from concept to production.</p>
-        </div>
+        <AnimatedSection>
+          <div className="section-heading">
+            <span className="label">Portfolio</span>
+            <h2>Featured <span className="gradient-text">Projects</span></h2>
+            <p>A showcase of applications I have designed, built, and shipped — from concept to production.</p>
+          </div>
+        </AnimatedSection>
 
-        <div className="projects-grid">
+        <StaggerContainer staggerDelay={0.1} className="projects-grid">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <StaggerItem key={project.id}>
+              <ProjectCard project={project} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

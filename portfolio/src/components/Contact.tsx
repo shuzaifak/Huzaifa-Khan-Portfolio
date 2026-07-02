@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 const EmailIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -33,7 +34,7 @@ const CopyIcon = () => (
 );
 
 const CheckIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" strokeWidth="2">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2">
     <polyline points="20 6 9 17 4 12"/>
   </svg>
 );
@@ -45,7 +46,6 @@ const contacts = [
     value: "shuzaifak35@gmail.com",
     href: "mailto:shuzaifak35@gmail.com",
     icon: <EmailIcon />,
-    accent: "#00d4ff",
   },
   {
     id: "linkedin",
@@ -53,7 +53,6 @@ const contacts = [
     value: "linkedin.com/in/huzaifa-khan-",
     href: "https://linkedin.com/in/huzaifa-khan-",
     icon: <LinkedInIcon />,
-    accent: "#0077b5",
   },
   {
     id: "github",
@@ -61,7 +60,6 @@ const contacts = [
     value: "github.com/shuzaifak",
     href: "https://github.com/shuzaifak",
     icon: <GitHubIcon />,
-    accent: "#e2e8f0",
   },
 ];
 
@@ -77,104 +75,109 @@ export default function Contact() {
   return (
     <section id="contact" style={{ padding: "120px 0 160px", position: "relative", zIndex: 1 }}>
       <div className="section-container">
-        <div className="section-heading">
-          <span className="label">Get In Touch</span>
-          <h2>Let&apos;s Build Something <span className="gradient-text">Amazing</span></h2>
-          <p>
-            Open to exciting opportunities, freelance projects, and collaborations.
-            Drop me a message and I&apos;ll get back to you soon!
-          </p>
-        </div>
-
-        <div className="contact-grid">
-          {/* Main CTA */}
-          <div
-            className="glass-card"
-            style={{
-              gridColumn: "1 / -1", padding: "48px", textAlign: "center",
-              background: "linear-gradient(135deg, rgba(0,212,255,0.05) 0%, rgba(123,47,255,0.05) 100%)",
-              borderColor: "rgba(0,212,255,0.12)",
-            }}
-          >
-            <div style={{
-              width: 64, height: 64, borderRadius: 18, margin: "0 auto 20px",
-              background: "linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,47,255,0.15))",
-              border: "1px solid rgba(0,212,255,0.2)",
-              display: "flex", alignItems: "center", justifyContent: "center", color: "#00d4ff",
-            }}>
-              <EmailIcon />
-            </div>
-            <h3 style={{ fontSize: 24, fontWeight: 700, color: "#f0f4ff", fontFamily: "Poppins, sans-serif", marginBottom: 12 }}>
-              Ready to Collaborate?
-            </h3>
-            <p style={{
-              fontSize: 15, color: "#8892a4", fontFamily: "Poppins, sans-serif",
-              marginBottom: 32, maxWidth: 420, margin: "0 auto 32px", lineHeight: 1.7,
-            }}>
-              Whether you have a project in mind, need a Flutter developer for your team,
-              or just want to say hello — my inbox is always open.
+        <AnimatedSection>
+          <div className="section-heading">
+            <span className="label">Get In Touch</span>
+            <h2>Let&apos;s Build Something <span className="gradient-text">Amazing</span></h2>
+            <p>
+              Open to exciting opportunities, freelance projects, and collaborations.
+              Drop me a message and I&apos;ll get back to you soon!
             </p>
-            <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="mailto:shuzaifak35@gmail.com" className="btn-primary">
-                <EmailIcon />
-                Send an Email
-              </a>
-              <button onClick={copyEmail} className="btn-outline">
-                {copied ? <><CheckIcon /> Copied!</> : <><CopyIcon /> Copy Email</>}
-              </button>
-            </div>
           </div>
+        </AnimatedSection>
 
-          {/* Contact cards */}
-          {contacts.map((contact) => (
-            <a
-              key={contact.id}
-              href={contact.href}
-              target={contact.href.startsWith("http") ? "_blank" : undefined}
-              rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+        <StaggerContainer staggerDelay={0.1} className="contact-grid">
+          {/* Main CTA */}
+          <StaggerItem style={{ gridColumn: "1 / -1" }}>
+            <div
+              className="glass-card"
               style={{
-                display: "flex", alignItems: "center", gap: 16, padding: "20px 24px",
-                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 16, textDecoration: "none", transition: "all 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = `${contact.accent}35`;
-                (e.currentTarget as HTMLElement).style.background = `${contact.accent}06`;
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = `0 12px 30px ${contact.accent}12`;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                padding: "48px", textAlign: "center",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%)",
+                borderColor: "rgba(255,255,255,0.08)",
               }}
             >
               <div style={{
-                width: 48, height: 48, borderRadius: 12,
-                background: `${contact.accent}10`, border: `1px solid ${contact.accent}20`,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                color: contact.accent, flexShrink: 0,
+                width: 64, height: 64, borderRadius: 18, margin: "0 auto 20px",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                display: "flex", alignItems: "center", justifyContent: "center", color: "#999999",
               }}>
-                {contact.icon}
+                <EmailIcon />
               </div>
-              <div style={{ minWidth: 0 }}>
-                <p style={{ fontSize: 12, color: "#4a5568", fontFamily: "Poppins, sans-serif", marginBottom: 2 }}>
-                  {contact.label}
-                </p>
-                <p style={{
-                  fontSize: 13, color: "#e2e8f0", fontFamily: "Poppins, sans-serif",
-                  fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+              <h3 style={{ fontSize: 24, fontWeight: 700, color: "#ededed", fontFamily: "Poppins, sans-serif", marginBottom: 12 }}>
+                Ready to Collaborate?
+              </h3>
+              <p style={{
+                fontSize: 15, color: "#777777", fontFamily: "Poppins, sans-serif",
+                marginBottom: 32, maxWidth: 420, margin: "0 auto 32px", lineHeight: 1.7,
+              }}>
+                Whether you have a project in mind, need a Flutter developer for your team,
+                or just want to say hello — my inbox is always open.
+              </p>
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="mailto:shuzaifak35@gmail.com" className="btn-primary">
+                  <EmailIcon />
+                  Send an Email
+                </a>
+                <button onClick={copyEmail} className="btn-outline">
+                  {copied ? <><CheckIcon /> Copied!</> : <><CopyIcon /> Copy Email</>}
+                </button>
+              </div>
+            </div>
+          </StaggerItem>
+
+          {/* Contact cards */}
+          {contacts.map((contact) => (
+            <StaggerItem key={contact.id}>
+              <a
+                href={contact.href}
+                target={contact.href.startsWith("http") ? "_blank" : undefined}
+                rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                style={{
+                  display: "flex", alignItems: "center", gap: 16, padding: "20px 24px",
+                  background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: 16, textDecoration: "none", transition: "all 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.15)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 30px rgba(255,255,255,0.03)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)";
+                  (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)";
+                  (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                }}
+              >
+                <div style={{
+                  width: 48, height: 48, borderRadius: 12,
+                  background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  color: "#999999", flexShrink: 0,
                 }}>
-                  {contact.value}
-                </p>
-              </div>
-              <div style={{ marginLeft: "auto", color: contact.accent, flexShrink: 0 }}>
-                <ArrowUpRightIcon />
-              </div>
-            </a>
+                  {contact.icon}
+                </div>
+                <div style={{ minWidth: 0 }}>
+                  <p style={{ fontSize: 12, color: "#3a3a3a", fontFamily: "Poppins, sans-serif", marginBottom: 2 }}>
+                    {contact.label}
+                  </p>
+                  <p style={{
+                    fontSize: 13, color: "#cccccc", fontFamily: "Poppins, sans-serif",
+                    fontWeight: 500, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                  }}>
+                    {contact.value}
+                  </p>
+                </div>
+                <div style={{ marginLeft: "auto", color: "#555555", flexShrink: 0 }}>
+                  <ArrowUpRightIcon />
+                </div>
+              </a>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

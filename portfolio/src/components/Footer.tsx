@@ -1,4 +1,5 @@
 "use client";
+import AnimatedSection from "./AnimatedSection";
 
 const LinkedInIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -22,23 +23,23 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   const socialLinks = [
-    { href: "https://linkedin.com/in/huzaifa-khan-", icon: <LinkedInIcon />, label: "LinkedIn", color: "#0077b5" },
-    { href: "https://github.com/shuzaifak", icon: <GitHubIcon />, label: "GitHub", color: "#e2e8f0" },
-    { href: "mailto:shuzaifak35@gmail.com", icon: <EmailIcon />, label: "Email", color: "#00d4ff" }
+    { href: "https://linkedin.com/in/huzaifa-khan-", icon: <LinkedInIcon />, label: "LinkedIn" },
+    { href: "https://github.com/shuzaifak", icon: <GitHubIcon />, label: "GitHub" },
+    { href: "mailto:shuzaifak35@gmail.com", icon: <EmailIcon />, label: "Email" }
   ];
 
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(255, 255, 255, 0.05)",
-        background: "linear-gradient(to bottom, rgba(6, 9, 18, 0.5), rgba(3, 5, 10, 0.95))",
+        borderTop: "1px solid rgba(255, 255, 255, 0.04)",
+        background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.95))",
         padding: "80px 24px 40px",
         position: "relative",
         zIndex: 1,
         overflow: "hidden"
       }}
     >
-      {/* Decorative top radial glow */}
+      {/* Decorative top gradient line */}
       <div
         style={{
           position: "absolute",
@@ -47,203 +48,202 @@ export default function Footer() {
           transform: "translateX(-50%)",
           width: "600px",
           height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), rgba(123, 47, 255, 0.3), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.1), rgba(255,255,255,0.1), transparent)",
           filter: "blur(0.5px)"
         }}
       />
 
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div className="footer-grid">
-          {/* Column 1: Info & Brand */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            <div
-              style={{
-                fontSize: 26,
-                fontWeight: 900,
-                background: "linear-gradient(135deg, #00d4ff, #7b2fff)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                fontFamily: "Poppins, sans-serif",
-                letterSpacing: "-0.03em",
-              }}
-            >
-              HK.
+      <AnimatedSection variant="fadeIn">
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="footer-grid">
+            {/* Column 1: Info & Brand */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+              <div
+                style={{
+                  fontSize: 26,
+                  fontWeight: 900,
+                  color: "#ffffff",
+                  fontFamily: "Poppins, sans-serif",
+                  letterSpacing: "-0.03em",
+                }}
+              >
+                HK.
+              </div>
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "#555555",
+                  lineHeight: 1.7,
+                  maxWidth: 380,
+                  fontFamily: "Poppins, sans-serif"
+                }}
+              >
+                Flutter developer specializing in building beautiful, production-ready, cross-platform mobile experiences that scale.
+              </p>
+
+              {/* Social quick links */}
+              <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
+                {socialLinks.map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    style={{
+                      width: 38,
+                      height: 38,
+                      borderRadius: 10,
+                      background: "rgba(255, 255, 255, 0.03)",
+                      border: "1px solid rgba(255, 255, 255, 0.06)",
+                      color: "#555555",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#ffffff";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.15)";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.color = "#555555";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.06)";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.03)";
+                      (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                    }}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
             </div>
+
+            {/* Column 2: Navigation Links */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <h4
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: "#cccccc",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  fontFamily: "Poppins, sans-serif"
+                }}
+              >
+                Navigation
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {["About", "Experience", "Projects"].map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase()}`}
+                    style={{
+                      fontSize: 14,
+                      color: "#444444",
+                      textDecoration: "none",
+                      fontFamily: "Poppins, sans-serif",
+                      transition: "color 0.2s"
+                    }}
+                    onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#ffffff"; }}
+                    onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#444444"; }}
+                  >
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 3: Resources */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <h4
+                style={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: "#cccccc",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  fontFamily: "Poppins, sans-serif"
+                }}
+              >
+                Expertise
+              </h4>
+              <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                {["Skills", "Education", "Contact"].map((link) => (
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase()}`}
+                    style={{
+                      fontSize: 14,
+                      color: "#444444",
+                      textDecoration: "none",
+                      fontFamily: "Poppins, sans-serif",
+                      transition: "color 0.2s"
+                    }}
+                    onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#ffffff"; }}
+                    onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#444444"; }}
+                  >
+                    {link}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div
+            style={{
+              height: 1,
+              background: "rgba(255, 255, 255, 0.04)",
+              margin: "40px 0 30px"
+            }}
+          />
+
+          {/* Bottom line */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: 16
+            }}
+            className="footer-bottom"
+          >
             <p
               style={{
-                fontSize: 14,
-                color: "#8892a4",
-                lineHeight: 1.7,
-                maxWidth: 380,
-                fontFamily: "Poppins, sans-serif"
+                fontSize: 13,
+                color: "#3a3a3a",
+                fontFamily: "Poppins, sans-serif",
+                margin: 0
               }}
             >
-              Flutter developer specializing in building beautiful, production-ready, cross-platform mobile experiences that scale.
+              © {year} Huzaifa Khan. All rights reserved.
             </p>
-
-            {/* Social quick links */}
-            <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
-              {socialLinks.map((social, idx) => (
-                <a
-                  key={idx}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  style={{
-                    width: 38,
-                    height: 38,
-                    borderRadius: 10,
-                    background: "rgba(255, 255, 255, 0.03)",
-                    border: "1px solid rgba(255, 255, 255, 0.06)",
-                    color: "#8892a4",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = social.color;
-                    (e.currentTarget as HTMLElement).style.borderColor = `${social.color}40`;
-                    (e.currentTarget as HTMLElement).style.background = `${social.color}08`;
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.color = "#8892a4";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.06)";
-                    (e.currentTarget as HTMLElement).style.background = "rgba(255, 255, 255, 0.03)";
-                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                  }}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 2: Navigation Links */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <h4
+            <a
+              href="/huzaifa_cv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                fontSize: 14,
-                fontWeight: 600,
-                color: "#e2e8f0",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                fontFamily: "Poppins, sans-serif"
+                fontSize: 13,
+                color: "#777777",
+                textDecoration: "none",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 500,
+                display: "flex",
+                alignItems: "center",
+                gap: 4
               }}
+              onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#ffffff"; }}
+              onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#777777"; }}
             >
-              Navigation
-            </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {["About", "Experience", "Projects"].map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  style={{
-                    fontSize: 14,
-                    color: "#6b7a94",
-                    textDecoration: "none",
-                    fontFamily: "Poppins, sans-serif",
-                    transition: "color 0.2s"
-                  }}
-                  onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#00d4ff"; }}
-                  onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#6b7a94"; }}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 3: Resources / Other Info */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <h4
-              style={{
-                fontSize: 14,
-                fontWeight: 600,
-                color: "#e2e8f0",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                fontFamily: "Poppins, sans-serif"
-              }}
-            >
-              Expertise
-            </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {["Skills", "Education", "Contact"].map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  style={{
-                    fontSize: 14,
-                    color: "#6b7a94",
-                    textDecoration: "none",
-                    fontFamily: "Poppins, sans-serif",
-                    transition: "color 0.2s"
-                  }}
-                  onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#7b2fff"; }}
-                  onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#6b7a94"; }}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
+              View CV Resume ↗
+            </a>
           </div>
         </div>
-
-        {/* Divider */}
-        <div
-          style={{
-            height: 1,
-            background: "rgba(255, 255, 255, 0.05)",
-            margin: "40px 0 30px"
-          }}
-        />
-
-        {/* Bottom line: Clean Copyright only */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 16
-          }}
-          className="footer-bottom"
-        >
-          <p
-            style={{
-              fontSize: 13,
-              color: "#4a5568",
-              fontFamily: "Poppins, sans-serif",
-              margin: 0
-            }}
-          >
-            © {year} Huzaifa Khan. All rights reserved.
-          </p>
-          <a
-            href="/huzaifa_cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontSize: 13,
-              color: "#00d4ff",
-              textDecoration: "none",
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 500,
-              display: "flex",
-              alignItems: "center",
-              gap: 4
-            }}
-            onMouseEnter={(e) => { (e.target as HTMLElement).style.color = "#7b2fff"; }}
-            onMouseLeave={(e) => { (e.target as HTMLElement).style.color = "#00d4ff"; }}
-          >
-            View CV Resume ↗
-          </a>
-        </div>
-      </div>
+      </AnimatedSection>
     </footer>
   );
 }

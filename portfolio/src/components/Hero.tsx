@@ -1,9 +1,22 @@
 "use client";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 
+const roles = ["Flutter Developer", "Mobile App Engineer", "Cross-Platform Specialist"];
+
 export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRoleIndex((i) => (i + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="hero"
@@ -19,13 +32,13 @@ export default function Hero() {
       {/* Three.js Canvas */}
       <HeroCanvas />
 
-      {/* Darkened radial gradient overlay with a subtle backdrop blur to maximize text legibility */}
+      {/* Dark overlay for text legibility */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 90% 70% at 50% 50%, rgba(6, 9, 18, 0.45) 0%, rgba(6, 9, 18, 0.88) 100%)",
+            "radial-gradient(ellipse 90% 70% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.88) 100%)",
           backdropFilter: "blur(3px)",
           WebkitBackdropFilter: "blur(3px)",
           zIndex: 1,
@@ -45,45 +58,6 @@ export default function Hero() {
           textShadow: "0 4px 30px rgba(0,0,0,0.5)",
         }}
       >
-        {/* Badge */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "6px 18px",
-            background: "rgba(0,212,255,0.08)",
-            border: "1px solid rgba(0,212,255,0.2)",
-            borderRadius: 50,
-            marginBottom: 28,
-            animation: "fadeIn 0.8s ease forwards",
-          }}
-        >
-          <span
-            style={{
-              width: 7,
-              height: 7,
-              borderRadius: "50%",
-              background: "#00d4ff",
-              display: "inline-block",
-              boxShadow: "0 0 8px #00d4ff",
-              animation: "pulse-glow 2s ease-in-out infinite",
-            }}
-          />
-          <span
-            style={{
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "0.15em",
-              color: "#00d4ff",
-              textTransform: "uppercase",
-              fontFamily: "Poppins, sans-serif",
-            }}
-          >
-            Available for Opportunities
-          </span>
-        </div>
-
         {/* Name */}
         <h1
           style={{
@@ -94,12 +68,13 @@ export default function Hero() {
             animation: "fadeUp 0.8s ease 0.1s both",
             fontFamily: "Poppins, sans-serif",
             letterSpacing: "-0.03em",
+            color: "#ffffff",
           }}
         >
           Huzaifa{" "}
           <span
             style={{
-              background: "linear-gradient(135deg, #00d4ff 0%, #7b2fff 100%)",
+              background: "linear-gradient(135deg, #ffffff 0%, #777777 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -109,27 +84,37 @@ export default function Hero() {
           </span>
         </h1>
 
-        {/* Role */}
+        {/* Role — animated rotation */}
         <div
           style={{
             fontSize: "clamp(18px, 3vw, 28px)",
             fontWeight: 500,
-            color: "#8892a4",
+            color: "#777777",
             marginBottom: 24,
             animation: "fadeUp 0.8s ease 0.2s both",
             fontFamily: "Poppins, sans-serif",
+            minHeight: "1.3em",
           }}
         >
-          Flutter Developer
-          <span style={{ color: "#00d4ff", margin: "0 12px" }}>·</span>
-          Mobile App Engineer
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={roles[roleIndex]}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -14 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+              style={{ display: "inline-block" }}
+            >
+              {roles[roleIndex]}
+            </motion.span>
+          </AnimatePresence>
         </div>
 
         {/* Tagline */}
         <p
           style={{
             fontSize: "clamp(14px, 2vw, 17px)",
-            color: "#6b7a94",
+            color: "#555555",
             maxWidth: 580,
             margin: "0 auto 40px",
             lineHeight: 1.7,
@@ -218,22 +203,22 @@ export default function Hero() {
                 alignItems: "center",
                 justifyContent: "center",
                 borderRadius: 12,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                color: "#8892a4",
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                color: "#555",
                 textDecoration: "none",
                 transition: "all 0.3s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#00d4ff";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,212,255,0.3)";
-                (e.currentTarget as HTMLElement).style.background = "rgba(0,212,255,0.08)";
+                (e.currentTarget as HTMLElement).style.color = "#ffffff";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.2)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(-3px)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#8892a4";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
-                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+                (e.currentTarget as HTMLElement).style.color = "#555";
+                (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
+                (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)";
                 (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
               }}
             >
@@ -258,14 +243,14 @@ export default function Hero() {
           animation: "fadeIn 1s ease 1s both",
         }}
       >
-        <span style={{ fontSize: 11, color: "#4a5568", letterSpacing: "0.2em", fontFamily: "Poppins, sans-serif" }}>
+        <span style={{ fontSize: 11, color: "#3a3a3a", letterSpacing: "0.2em", fontFamily: "Poppins, sans-serif" }}>
           SCROLL
         </span>
         <div
           style={{
             width: 1.5,
             height: 40,
-            background: "linear-gradient(to bottom, #00d4ff, transparent)",
+            background: "linear-gradient(to bottom, rgba(255,255,255,0.4), transparent)",
             borderRadius: 1,
             animation: "float 2s ease-in-out infinite",
           }}

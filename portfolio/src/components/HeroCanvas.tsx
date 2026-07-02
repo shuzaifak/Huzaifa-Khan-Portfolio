@@ -14,7 +14,7 @@ export default function HeroCanvas() {
     // ── Renderer ──────────────────────────────────────────────────────────
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(W, H);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Capped at 1.5 for performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setClearColor(0x000000, 0);
     mountRef.current.appendChild(renderer.domElement);
 
@@ -23,14 +23,13 @@ export default function HeroCanvas() {
     const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 1000);
     camera.position.z = 90;
 
-    // ── Particles (Optimized count: 80) ──────────────────────────────────
+    // ── Particles (white/gray tones) ──────────────────────────────────────
     const PARTICLE_COUNT = 80;
     const pos = new Float32Array(PARTICLE_COUNT * 3);
     const col = new Float32Array(PARTICLE_COUNT * 3);
     const vel: { vx: number; vy: number; vz: number }[] = [];
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      // Distribute in a spherical volume
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       const r = 20 + Math.random() * 45;
@@ -38,11 +37,11 @@ export default function HeroCanvas() {
       pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       pos[i * 3 + 2] = (Math.random() - 0.5) * 40;
 
-      // Cyan to violet color gradient
-      const t = Math.random();
-      col[i * 3]     = t * 0.48;
-      col[i * 3 + 1] = (1 - t) * 0.83;
-      col[i * 3 + 2] = 1.0;
+      // White / light gray color palette
+      const brightness = 0.45 + Math.random() * 0.55;
+      col[i * 3]     = brightness;
+      col[i * 3 + 1] = brightness;
+      col[i * 3 + 2] = brightness;
 
       vel.push({
         vx: (Math.random() - 0.5) * 0.08,
@@ -59,7 +58,7 @@ export default function HeroCanvas() {
       size: 2.5,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.7,
       sizeAttenuation: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
@@ -68,7 +67,7 @@ export default function HeroCanvas() {
     const particles = new THREE.Points(pGeo, pMat);
     scene.add(particles);
 
-    // ── Connection Lines (Optimized max count) ────────────────────────────
+    // ── Connection Lines ────────────────────────────────────────────────────
     const MAX_LINES = 100;
     const linePos = new Float32Array(MAX_LINES * 6);
     const lineColors = new Float32Array(MAX_LINES * 6);
@@ -80,7 +79,7 @@ export default function HeroCanvas() {
     const lMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.2,
+      opacity: 0.12,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -88,29 +87,29 @@ export default function HeroCanvas() {
     const lines = new THREE.LineSegments(lGeo, lMat);
     scene.add(lines);
 
-    // ── Central Icosahedron ───────────────────────────────────────────────
+    // ── Central Icosahedron — white wireframe ─────────────────────────────
     const icoGeo = new THREE.IcosahedronGeometry(18, 1);
     const icoMat = new THREE.MeshBasicMaterial({
-      color: 0x00d4ff,
+      color: 0xffffff,
       wireframe: true,
       transparent: true,
-      opacity: 0.1,
+      opacity: 0.06,
     });
     const ico = new THREE.Mesh(icoGeo, icoMat);
     scene.add(ico);
 
-    // Inner icosahedron
+    // Inner icosahedron — gray wireframe
     const ico2Geo = new THREE.IcosahedronGeometry(10, 0);
     const ico2Mat = new THREE.MeshBasicMaterial({
-      color: 0x7b2fff,
+      color: 0x888888,
       wireframe: true,
       transparent: true,
-      opacity: 0.15,
+      opacity: 0.08,
     });
     const ico2 = new THREE.Mesh(ico2Geo, ico2Mat);
     scene.add(ico2);
 
-    // ── Orbital Rings ─────────────────────────────────────────────────────
+    // ── Orbital Rings — white / gray ──────────────────────────────────────
     const makeRing = (radius: number, tube: number, color: number, opacity: number, rotX: number, rotY: number) => {
       const geo = new THREE.TorusGeometry(radius, tube, 6, 60);
       const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, blending: THREE.AdditiveBlending });
@@ -121,8 +120,8 @@ export default function HeroCanvas() {
       return mesh;
     };
 
-    const ring1 = makeRing(28, 0.2, 0x00d4ff, 0.14, Math.PI / 2.5, 0.3);
-    const ring2 = makeRing(36, 0.15, 0x7b2fff, 0.1, Math.PI / 4, 0.8);
+    const ring1 = makeRing(28, 0.2, 0xffffff, 0.07, Math.PI / 2.5, 0.3);
+    const ring2 = makeRing(36, 0.15, 0x666666, 0.05, Math.PI / 4, 0.8);
 
     // ── Mouse Tracking ────────────────────────────────────────────────────
     let targetX = 0, targetY = 0;
@@ -154,28 +153,22 @@ export default function HeroCanvas() {
       animId = requestAnimationFrame(animate);
       const t = (Date.now() - startTime) / 1000;
 
-      // Smooth mouse follow
       currentX += (targetX - currentX) * 0.05;
       currentY += (targetY - currentY) * 0.05;
 
-      // Retrieve the GPU array directly to write updates
       const positionArray = pGeo.attributes.position.array as Float32Array;
 
-      // Move particles and wrap around box limits (prevents stuck velocity bounce loop)
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         positionArray[i * 3]     += vel[i].vx;
         positionArray[i * 3 + 1] += vel[i].vy;
         positionArray[i * 3 + 2] += vel[i].vz;
 
-        // X boundary wrap
         if (positionArray[i * 3] > 80) positionArray[i * 3] = -80;
         else if (positionArray[i * 3] < -80) positionArray[i * 3] = 80;
 
-        // Y boundary wrap
         if (positionArray[i * 3 + 1] > 60) positionArray[i * 3 + 1] = -60;
         else if (positionArray[i * 3 + 1] < -60) positionArray[i * 3 + 1] = 60;
 
-        // Z boundary wrap
         if (positionArray[i * 3 + 2] > 40) positionArray[i * 3 + 2] = -40;
         else if (positionArray[i * 3 + 2] < -40) positionArray[i * 3 + 2] = 40;
       }
@@ -191,7 +184,7 @@ export default function HeroCanvas() {
           const d  = Math.sqrt(dx*dx + dy*dy + dz*dz);
 
           if (d < CONNECT_DIST) {
-            const alpha = (1 - d / CONNECT_DIST) * 0.35;
+            const alpha = (1 - d / CONNECT_DIST) * 0.3;
 
             linePos[lineCount*6]     = positionArray[i*3];
             linePos[lineCount*6+1]   = positionArray[i*3+1];
@@ -215,7 +208,6 @@ export default function HeroCanvas() {
       lGeo.attributes.position.needsUpdate = true;
       lGeo.attributes.color.needsUpdate = true;
 
-      // Rotate scene elements
       particles.rotation.y = t * 0.05 + currentX;
       particles.rotation.x = currentY * 0.5;
 
@@ -228,7 +220,6 @@ export default function HeroCanvas() {
       ring1.rotation.z = t * 0.05;
       ring2.rotation.z = -t * 0.03;
 
-      // Camera subtle bob
       camera.position.y = Math.sin(t * 0.25) * 1.5;
 
       renderer.render(scene, camera);

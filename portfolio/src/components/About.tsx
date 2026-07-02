@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 const stats = [
   { value: 2, suffix: "+", label: "Live Apps on Play Store" },
@@ -71,59 +72,67 @@ export default function About() {
   return (
     <section id="about" style={{ padding: "120px 0", position: "relative", zIndex: 1 }}>
       <div className="section-container">
-        <div className="section-heading">
-          <span className="label">About Me</span>
-          <h2>Crafting Experiences, <span className="gradient-text">One Pixel at a Time</span></h2>
-        </div>
+        <AnimatedSection>
+          <div className="section-heading">
+            <span className="label">About Me</span>
+            <h2>Crafting Experiences, <span className="gradient-text">One Pixel at a Time</span></h2>
+          </div>
+        </AnimatedSection>
 
         <div className="about-grid">
           {/* Left: bio */}
-          <div>
-            <p style={{ fontSize: 16, lineHeight: 1.85, color: "#8892a4", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-              Flutter developer with <strong style={{ color: "#f0f4ff" }}>1+ year of Job experience</strong> and{" "}
-              <strong style={{ color: "#f0f4ff" }}>3 years of total Flutter development</strong>, building cross-platform mobile
-              applications that ship and get used. I have two live apps on Google Play, built and marketed my own POS product
-              that digitized a fully manual business, and work part-time with an international team remotely.
-            </p>
-            <p style={{ fontSize: 16, lineHeight: 1.85, color: "#8892a4", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-              My stack covers <span style={{ color: "#00d4ff" }}>Flutter, Dart, Firebase, REST APIs</span>, and payment and
-              mapping integrations. I write clean, maintainable code and take full ownership from design to deployment.
-            </p>
+          <AnimatedSection variant="slideInLeft" delay={0.1}>
+            <div>
+              <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
+                Flutter developer with <strong style={{ color: "#ededed" }}>1+ year of Job experience</strong> and{" "}
+                <strong style={{ color: "#ededed" }}>3 years of total Flutter development</strong>, building cross-platform mobile
+                applications that ship and get used. I have two live apps on Google Play, built and marketed my own POS product
+                that digitized a fully manual business, and work part-time with an international team remotely.
+              </p>
+              <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
+                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Firebase, REST APIs</span>, and payment and
+                mapping integrations. I write clean, maintainable code and take full ownership from design to deployment.
+              </p>
 
-            <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 14 }}>
-              {highlights.map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 14, color: "#8892a4", fontFamily: "Poppins, sans-serif" }}>
-                  <div style={{
-                    width: 32, height: 32, borderRadius: 8, background: "rgba(0,212,255,0.08)",
-                    border: "1px solid rgba(0,212,255,0.15)", display: "flex", alignItems: "center",
-                    justifyContent: "center", color: "#00d4ff", flexShrink: 0,
-                  }}>
-                    {item.icon}
-                  </div>
-                  {item.text}
-                </div>
-              ))}
+              <StaggerContainer staggerDelay={0.1} style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 14 }}>
+                {highlights.map((item, i) => (
+                  <StaggerItem key={i}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 14, color: "#777777", fontFamily: "Poppins, sans-serif" }}>
+                      <div style={{
+                        width: 32, height: 32, borderRadius: 8, background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center",
+                        justifyContent: "center", color: "#999999", flexShrink: 0,
+                      }}>
+                        {item.icon}
+                      </div>
+                      {item.text}
+                    </div>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Right: stats */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 20 }}>
+          <StaggerContainer staggerDelay={0.12} style={{ display: "grid", gridTemplateColumns: "1fr", gap: 20 }}>
             {stats.map((stat, i) => (
-              <div key={i} className="glass-card" style={{ padding: "28px 32px", display: "flex", alignItems: "center", gap: 24 }}>
-                <div style={{
-                  fontSize: "clamp(36px, 5vw, 52px)", fontWeight: 800, fontFamily: "Poppins, sans-serif",
-                  background: "linear-gradient(135deg, #00d4ff, #7b2fff)",
-                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                  lineHeight: 1, minWidth: 80,
-                }}>
-                  <CountUp target={stat.value} suffix={stat.suffix} />
+              <StaggerItem key={i}>
+                <div className="glass-card" style={{ padding: "28px 32px", display: "flex", alignItems: "center", gap: 24 }}>
+                  <div style={{
+                    fontSize: "clamp(36px, 5vw, 52px)", fontWeight: 800, fontFamily: "Poppins, sans-serif",
+                    background: "linear-gradient(135deg, #ffffff, #666666)",
+                    WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
+                    lineHeight: 1, minWidth: 80,
+                  }}>
+                    <CountUp target={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p style={{ fontSize: 14, color: "#777777", fontFamily: "Poppins, sans-serif", lineHeight: 1.4 }}>
+                    {stat.label}
+                  </p>
                 </div>
-                <p style={{ fontSize: 14, color: "#8892a4", fontFamily: "Poppins, sans-serif", lineHeight: 1.4 }}>
-                  {stat.label}
-                </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>
