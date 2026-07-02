@@ -3,15 +3,15 @@ import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSectio
 
 const BriefcaseIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-    <rect x="2" y="7" width="20" height="14" rx="2"/>
-    <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
-    <line x1="12" y1="12" x2="12" y2="12"/>
+    <rect x="2" y="7" width="20" height="14" rx="2" />
+    <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
+    <line x1="12" y1="12" x2="12" y2="12" />
   </svg>
 );
 
 const ArrowIcon = () => (
   <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-    <polygon points="5,3 19,12 5,21"/>
+    <polygon points="5,3 19,12 5,21" />
   </svg>
 );
 
@@ -28,7 +28,7 @@ const experiences = [
       "Optimized multiple screens and resolved critical crash-causing bugs, reducing screen load times by up to 40% and significantly improving app stability",
       "Collaborate with backend team to integrate new APIs, implement new features, and maintain code quality across the POS platform",
     ],
-    tech: ["Flutter", "Dart", "Firebase", "Android Native", "REST APIs"],
+    tech: ["Flutter", "Dart", "Provider", "Android Native", "REST APIs"],
   },
   {
     role: "Mobile App Intern",
