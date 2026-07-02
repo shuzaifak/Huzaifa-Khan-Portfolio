@@ -60,14 +60,41 @@ export default function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div
                 style={{
-                  fontSize: 26,
-                  fontWeight: 900,
-                  color: "#ffffff",
-                  fontFamily: "Poppins, sans-serif",
-                  letterSpacing: "-0.03em",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
                 }}
               >
-                HK.
+                <div
+                  style={{
+                    width: 38,
+                    height: 38,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src="/logo.svg"
+                    alt="HK Logo"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      display: "block",
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    fontSize: 24,
+                    fontWeight: 800,
+                    color: "#ffffff",
+                    fontFamily: "Poppins, sans-serif",
+                    letterSpacing: "-0.02em",
+                  }}
+                >
+                  Huzaifa Khan<span style={{ color: "#ffffff" }}>.</span>
+                </div>
               </div>
               <p
                 style={{

@@ -36,214 +36,398 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          padding: scrolled ? "12px 0" : "20px 0",
-          background: scrolled
-            ? "rgba(0, 0, 0, 0.85)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
-          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-        }}
-      >
+      <header className="site-header">
         <div
+          className={`nav-shell ${menuOpen ? "menu-active" : ""}`}
           style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
             maxWidth: 1200,
             margin: "0 auto",
-            padding: "0 24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            background: "rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(22px)",
+            WebkitBackdropFilter: "blur(22px)",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+            borderRadius: menuOpen ? "24px" : "999px",
+            minHeight: menuOpen ? "auto" : "76px",
+            padding: menuOpen ? "16px 20px" : "12px 24px",
+            position: "relative",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          {/* Logo */}
-          <a
-            href="#"
-            style={{
-              fontSize: 22,
-              fontWeight: 800,
-              textDecoration: "none",
-              color: "#ffffff",
-              letterSpacing: "-0.03em",
-              fontFamily: "Poppins, sans-serif",
-            }}
-          >
-            HK.
-          </a>
-
-          {/* Desktop Links */}
+          {/* Main Top Row */}
           <div
             style={{
+              width: "100%",
               display: "flex",
-              gap: 8,
               alignItems: "center",
+              justifyContent: "space-between",
             }}
-            className="desktop-nav"
           >
-            {navLinks.map((link) => {
-              const id = link.href.replace("#", "");
-              const isActive = activeSection === id;
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  style={{
-                    padding: "8px 16px",
-                    fontSize: 14,
-                    fontWeight: 500,
-                    textDecoration: "none",
-                    color: isActive ? "#ffffff" : "#666666",
-                    borderRadius: 8,
-                    transition: "all 0.2s",
-                    background: isActive ? "rgba(255,255,255,0.06)" : "transparent",
-                    fontFamily: "Poppins, sans-serif",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      (e.target as HTMLElement).style.color = "#cccccc";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      (e.target as HTMLElement).style.color = "#666666";
-                    }
-                  }}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
+            {/* Brand Logo */}
             <a
-              href="/huzaifa_cv.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#"
+              className="brand"
               style={{
-                marginLeft: 8,
-                padding: "8px 20px",
-                fontSize: 13,
-                fontWeight: 600,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 12,
                 textDecoration: "none",
-                background: "#ffffff",
-                color: "#000000",
-                borderRadius: 50,
-                transition: "all 0.3s",
+                color: "#ffffff",
                 fontFamily: "Poppins, sans-serif",
-                boxShadow: "0 2px 12px rgba(255,255,255,0.08)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 20px rgba(255,255,255,0.12)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(255,255,255,0.08)";
+                minWidth: "max-content",
               }}
             >
-              Resume
-            </a>
-          </div>
-
-          {/* Hamburger */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            style={{
-              display: "none",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: 8,
-              color: "#ededed",
-              flexDirection: "column",
-              gap: 5,
-            }}
-            className="hamburger"
-          >
-            <span style={{
-              display: "block", width: 22, height: 2,
-              background: "#ededed", borderRadius: 2,
-              transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none",
-              transition: "all 0.3s",
-            }} />
-            <span style={{
-              display: "block", width: 22, height: 2,
-              background: "#ededed", borderRadius: 2,
-              opacity: menuOpen ? 0 : 1,
-              transition: "all 0.3s",
-            }} />
-            <span style={{
-              display: "block", width: 22, height: 2,
-              background: "#ededed", borderRadius: 2,
-              transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none",
-              transition: "all 0.3s",
-            }} />
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div
-            style={{
-              padding: "16px 24px 24px",
-              background: "rgba(0,0,0,0.97)",
-              backdropFilter: "blur(20px)",
-              display: "flex",
-              flexDirection: "column",
-              gap: 4,
-              borderTop: "1px solid rgba(255,255,255,0.05)",
-            }}
-          >
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
+              <div
                 style={{
-                  padding: "12px 16px",
-                  fontSize: 15,
-                  fontWeight: 500,
-                  color: "#777777",
-                  textDecoration: "none",
-                  borderRadius: 8,
-                  fontFamily: "Poppins, sans-serif",
-                  transition: "all 0.2s",
+                  width: 38,
+                  height: 38,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="/huzaifa_cv.pdf"
-              target="_blank"
+                <img
+                  src="/logo.svg"
+                  alt="HK Logo"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "block",
+                  }}
+                />
+              </div>
+              <span
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <strong
+                  style={{
+                    display: "block",
+                    fontSize: "1.15rem",
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  Huzaifa Khan<span style={{ color: "#ffffff" }}>.</span>
+                </strong>
+                <small
+                  style={{
+                    color: "#777777",
+                    display: "block",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.22em",
+                    lineHeight: 1.2,
+                    marginTop: 4,
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                  }}
+                >
+                  Flutter Developer
+                </small>
+              </span>
+            </a>
+
+            {/* Desktop Navigation Links */}
+            <nav
+              className="desktop-nav"
               style={{
-                marginTop: 8,
-                padding: "12px 16px",
-                fontSize: 15,
-                fontWeight: 600,
-                color: "#ffffff",
-                textDecoration: "none",
-                fontFamily: "Poppins, sans-serif",
+                display: "flex",
+                alignItems: "center",
+                gap: "clamp(12px, 1.8vw, 28px)",
               }}
             >
-              Download Resume ↗
-            </a>
+              {navLinks.map((link) => {
+                const id = link.href.replace("#", "");
+                const isActive = activeSection === id;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={`nav-link ${isActive ? "active" : ""}`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Right Actions (CTA & Hamburger) */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+              }}
+            >
+              <a
+                href="/huzaifa_cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-cta"
+              >
+                <span>Resume</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-arrow-up-right"
+                >
+                  <path d="M7 7h10v10"></path>
+                  <path d="M7 17 17 7"></path>
+                </svg>
+              </a>
+
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="menu-button"
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+              >
+                {menuOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
-        )}
-      </nav>
+
+          {/* Mobile Expanded Menu Drawer */}
+          {menuOpen && (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: 8,
+                padding: "20px 8px 10px 8px",
+                borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+                marginTop: 16,
+              }}
+            >
+              {navLinks.map((link) => {
+                const id = link.href.replace("#", "");
+                const isActive = activeSection === id;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    style={{
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                      color: isActive ? "#ffffff" : "#9b9d9d",
+                      textDecoration: "none",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.15em",
+                      padding: "10px 12px",
+                      borderRadius: 8,
+                      background: isActive ? "rgba(255, 255, 255, 0.05)" : "transparent",
+                      transition: "all 0.2s",
+                      fontFamily: "Poppins, sans-serif",
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+              <a
+                href="/huzaifa_cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  marginTop: 12,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  padding: "12px 16px",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  color: "#000000",
+                  background: "#ffffff",
+                  textDecoration: "none",
+                  borderRadius: 999,
+                  fontFamily: "Poppins, sans-serif",
+                  textAlign: "center",
+                }}
+              >
+                <span>Resume</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 7h10v10"></path>
+                  <path d="M7 17 17 7"></path>
+                </svg>
+              </a>
+            </div>
+          )}
+        </div>
+      </header>
 
       <style jsx global>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .hamburger { display: flex !important; }
+        .site-header {
+          left: 0;
+          padding: 20px 24px 0;
+          position: fixed;
+          right: 0;
+          top: 0;
+          z-index: 500;
+        }
+
+        .nav-link {
+          color: #9b9d9d;
+          font-size: 0.72rem;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          position: relative;
+          text-transform: uppercase;
+          text-decoration: none;
+          padding: 8px 0;
+          transition: color 0.18s ease;
+          font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-link:after {
+          background: #ffffff;
+          bottom: -4px;
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+          content: "";
+          height: 2px;
+          left: 0;
+          position: absolute;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.22s ease;
+          width: 100%;
+        }
+
+        .nav-link:hover {
+          color: #ffffff;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+          transform: scaleX(1);
+        }
+
+        .nav-link.active {
+          color: #ffffff;
+        }
+
+        .nav-cta {
+          align-items: center;
+          border: 0;
+          border-radius: 999px;
+          cursor: pointer;
+          display: inline-flex;
+          font-size: 0.82rem;
+          font-weight: 700;
+          gap: 6px;
+          justify-content: center;
+          line-height: 1;
+          min-height: 40px;
+          padding: 0 18px;
+          transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+          white-space: nowrap;
+          background: #ffffff;
+          color: #000000;
+          text-decoration: none;
+          font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-cta:hover {
+          background: #e6e6e6;
+          transform: translateY(-1px);
+        }
+
+        .menu-button {
+          align-items: center;
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          color: #ffffff;
+          display: none;
+          height: 40px;
+          width: 40px;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .menu-button:hover {
+          background: rgba(255, 255, 255, 0.12);
+        }
+
+        @media (max-width: 1024px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .menu-button {
+            display: inline-flex !important;
+          }
+        }
+
+        @media (max-width: 760px) {
+          .site-header {
+            padding: 10px 10px 0;
+          }
+          .nav-shell {
+            border-radius: 18px !important;
+            min-height: 62px !important;
+            padding: 8px 12px !important;
+          }
+          .nav-cta {
+            display: none !important;
+          }
         }
       `}</style>
     </>
   );
 }
+
