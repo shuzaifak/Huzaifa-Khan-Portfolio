@@ -63,15 +63,15 @@ const projects = [
   {
     id: "bluepin",
     name: "Bluepin",
-    tech: ["Flutter", "Firebase", "Firestore", "Storage", "Stripe", "Google Maps API", "Cloud Functions"],
+    tech: ["Flutter", "Firebase", "Firestore", "Stripe", "Google Maps API", "Cloud Functions", "Codemagic"],
     mockups: ["/mockups/bluepin_1.webp", "/mockups/bluepin_2.webp", "/mockups/bluepin_3.webp"],
     accent: "#ffffff",
-    live: false,
-    inProgress: true,
+    live: true,
+    playStore: "https://play.google.com/store/apps/details?id=com.app.bluepin",
     bullets: [
-      "Developing parking reservation system with integrated admin and user panels for comprehensive parking space management",
-      "Implementing Stripe payment integration via Cloud Functions and Google Maps API for real-time location-based parking search",
-      "Building responsive pixel-perfect UI with REST API and JSON integration for seamless cross-platform experience",
+      "Built a parking reservation system with integrated admin and user panels for comprehensive parking space management, now live on Google Play",
+      "Implemented Stripe payment integration via Cloud Functions and Google Maps API for real-time location-based parking search",
+      "Set up a Codemagic CI/CD pipeline to build and sign iOS from Windows and deploy to App Store Connect, with the build currently in TestFlight testing",
     ],
   },
   {

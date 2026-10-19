@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Huzaifa Khan — Flutter Developer",
   description:
-    "Flutter developer with 1+ year of professional experience and 3 years of total Flutter development, building cross-platform mobile applications that ship and get used. Two live apps on Google Play.",
+    "Flutter developer with 1.5+ years of professional experience building cross-platform mobile apps. Three live apps on Google Play, building subscriptions, payments, and wallets at SporTech.",
   keywords: ["Flutter", "Mobile Developer", "Dart", "Firebase", "Portfolio", "Huzaifa Khan", "Islamabad"],
   authors: [{ name: "Huzaifa Khan" }],
   openGraph: {

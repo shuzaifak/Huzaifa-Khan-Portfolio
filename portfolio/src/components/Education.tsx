@@ -46,7 +46,7 @@ const education = [
     highlights: [
       "Focus on Software Engineering & Mobile Development",
       "Multiple full-stack and Flutter application projects",
-      "Expected graduation: June 2026",
+      "Graduated June 2026",
     ],
   },
   {

@@ -523,3 +523,23 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
   }
 }
+
+/* Experience timeline on small screens: drop the side dot so cards get full width */
+@media (max-width: 640px) {
+  .exp-timeline,
+  .exp-dot {
+    display: none !important;
+  }
+  .exp-row {
+    gap: 0 !important;
+  }
+  .exp-card {
+    padding: 22px 20px !important;
+  }
+  .exp-meta {
+    align-items: flex-start !important;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 10px !important;
+  }
+}

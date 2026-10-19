@@ -41,30 +41,32 @@ const skillGroups = [
     title: "Mobile",
     icon: <MobileIcon />,
     skills: [
-      "Flutter", "Dart", "iOS Development", "Android Development",
-      "Cross-Platform Development", "Provider", "MVVM", "UI/UX Design",
+      "Flutter", "Dart", "Kotlin Multiplatform", "Compose Multiplatform",
+      "iOS Development", "Android Development", "Riverpod", "BLoC", "Provider",
+      "MVVM", "Secure Storage", "Widget Testing", "UI/UX Design",
     ],
   },
   {
     title: "Backend",
     icon: <ServerIcon />,
     skills: [
-      "Firebase", "Firestore", "Supabase", "MySQL", "SQLite",
-      "Spring Boot", "Cloud Functions", "REST APIs", "WebSockets",
+      "Go", "PostgreSQL", "Firebase", "Firestore", "Cloud Functions", "Supabase",
+      "MySQL", "SQLite", "Hive", "Spring Boot", "REST APIs", "WebSockets",
     ],
   },
   {
     title: "Integrations",
     icon: <PuzzleIcon />,
     skills: [
-      "Mapbox", "Google Maps", "Stripe", "Mercado Pago",
-      "ML Models", "Thermal Printing",
+      "Apple Pay", "Google Pay", "Stripe", "Mercado Pago", "Google Maps",
+      "Mapbox", "ML Models", "Thermal Printing", "Codemagic", "TestFlight",
+      "Google Play Console", "App Store Connect",
     ],
   },
   {
     title: "Languages",
     icon: <CodeIcon />,
-    skills: ["Dart", "Java", "C++"],
+    skills: ["Dart", "Kotlin", "Go", "Java", "C++"],
   },
   {
     title: "Tools",

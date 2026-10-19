@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 const stats = [
-  { value: 2, suffix: "+", label: "Live Apps on Play Store" },
+  { value: 3, suffix: "", label: "Live Apps on Google Play" },
   { value: 10, suffix: "+", label: "Apps Shipped" },
-  { value: 3, suffix: "+", label: "Years Flutter Development" },
+  { value: 10, suffix: "+", label: "UK Restaurants Running My POS Work" },
 ];
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
@@ -56,7 +56,7 @@ const highlights = [
         <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
       </svg>
     ),
-    text: "Flutter · Dart · Firebase · REST APIs",
+    text: "Flutter · Dart · Kotlin Multiplatform · Firebase · Go",
   },
   {
     icon: (
@@ -64,7 +64,7 @@ const highlights = [
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
       </svg>
     ),
-    text: "2 Live Apps on Google Play Store",
+    text: "3 Live Apps on Google Play Store",
   },
 ];
 
@@ -84,13 +84,14 @@ export default function About() {
           <AnimatedSection variant="slideInLeft" delay={0.1}>
             <div>
               <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-                Flutter developer with <strong style={{ color: "#ededed" }}>1+ year of Job experience</strong> and{" "}
-                <strong style={{ color: "#ededed" }}>3 years of total Flutter development</strong>, building cross-platform mobile
-                applications that ship and get used. I have two live apps on Google Play, built and marketed my own POS product
-                that digitized a fully manual business, and work part-time with an international team remotely.
+                Flutter developer with <strong style={{ color: "#ededed" }}>1.5+ years of professional experience</strong>, building
+                cross-platform mobile applications that ship and get used. I have{" "}
+                <strong style={{ color: "#ededed" }}>three live apps on Google Play</strong>, with iOS deployment in progress through
+                Codemagic and TestFlight, and I built and sold my own POS product that digitized a fully manual business. I currently
+                build subscription, payment, and wallet features at SporTech, and work remotely with an international team at Surge.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Firebase, REST APIs</span>, and payment and
+                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Kotlin Multiplatform, Firebase, Go, REST APIs</span>, and payment and
                 mapping integrations. I write clean, maintainable code and take full ownership from design to deployment.
               </p>
 

@@ -17,6 +17,22 @@ const ArrowIcon = () => (
 
 const experiences = [
   {
+    role: "Junior Mobile Developer",
+    company: "SporTech",
+    location: "Islamabad, Pakistan (Onsite)",
+    period: "Jul 2026 – Present",
+    type: "Full-time",
+    current: true,
+    bullets: [
+      "Built membership subscription flows in a cross-platform Android/iOS app (Kotlin Multiplatform): plan selection, checkout, upgrades, cancellation, gifting, trial validity, and entitlement-based membership cards",
+      "Integrated in-app payments with card checkout, saved cards, Apple Pay, Google Pay, and promo codes, plus a SporCoin wallet with top-up, peer-to-peer transfer, and transaction history, using idempotent retries for safe payments",
+      "Built a community feed with multi-image and video posts, video trimming, and image cropping, and prediction flows for football, cricket, and volleyball with KYC and GPS-based eligibility",
+      "Built Flutter admin panel modules for memberships, tokens, promo codes, and predictions using Riverpod and secure token storage, with full Arabic localization and RTL support",
+      "Developed backend APIs in Go on PostgreSQL for memberships, token pricing, promo codes, voting, and predictions, and sped up feed and story loading with image re-encoding and presigned-URL caching",
+    ],
+    tech: ["Kotlin Multiplatform", "Compose Multiplatform", "Flutter", "Riverpod", "Go", "PostgreSQL", "Apple Pay", "Google Pay"],
+  },
+  {
     role: "Flutter Developer",
     company: "Surge",
     location: "Manchester, England, United Kingdom (Remote)",
@@ -24,9 +40,9 @@ const experiences = [
     type: "Full-time",
     current: true,
     bullets: [
+      "Maintaining and enhancing a production Flutter POS system deployed across 10+ restaurants in the UK, ensuring reliability for daily business operations",
       "Integrated thermal receipt printing using Android native code, improving receipt generation speed by 70% and eliminating cashier workflow bottlenecks",
       "Optimized multiple screens and resolved critical crash-causing bugs, reducing screen load times by up to 40% and significantly improving app stability",
-      "Collaborate with backend team to integrate new APIs, implement new features, and maintain code quality across the POS platform",
     ],
     tech: ["Flutter", "Dart", "Provider", "Android Native", "REST APIs"],
   },
@@ -62,13 +78,13 @@ export default function Experience() {
           <div className="section-heading">
             <span className="label">Experience</span>
             <h2>Professional <span className="gradient-text">Journey</span></h2>
-            <p>Building real-world products with a talented international team at Surge</p>
+            <p>Shipping subscriptions, payments, and wallets at SporTech, and a production POS with an international team at Surge</p>
           </div>
         </AnimatedSection>
 
         <div style={{ maxWidth: 820, margin: "0 auto", position: "relative" }}>
           {/* Timeline line */}
-          <div style={{
+          <div className="exp-timeline" style={{
             position: "absolute", left: 27, top: 0, bottom: 0, width: 2,
             background: "linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.05), transparent)",
             opacity: 0.4,
@@ -77,9 +93,9 @@ export default function Experience() {
           <StaggerContainer staggerDelay={0.15} style={{ display: "flex", flexDirection: "column", gap: 40 }}>
             {experiences.map((exp, i) => (
               <StaggerItem key={i}>
-                <div style={{ display: "flex", gap: 32 }}>
+                <div className="exp-row" style={{ display: "flex", gap: 32 }}>
                   {/* Timeline dot */}
-                  <div style={{ flexShrink: 0, paddingTop: 6 }}>
+                  <div className="exp-dot" style={{ flexShrink: 0, paddingTop: 6 }}>
                     <div style={{
                       width: 56, height: 56, borderRadius: "50%",
                       background: exp.current
@@ -96,9 +112,9 @@ export default function Experience() {
 
                   {/* Card */}
                   <div
-                    className="glass-card"
+                    className="glass-card exp-card"
                     style={{
-                      flex: 1, padding: "28px 32px",
+                      flex: 1, minWidth: 0, padding: "28px 32px",
                       borderColor: exp.current ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.05)",
                     }}
                   >
@@ -117,7 +133,7 @@ export default function Experience() {
                           <span style={{ color: "#555555", fontWeight: 400, fontSize: 14 }}>{exp.location}</span>
                         </div>
                       </div>
-                      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
+                      <div className="exp-meta" style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
                         <span style={{
                           padding: "4px 12px", borderRadius: 50, fontSize: 12, fontWeight: 600,
                           background: exp.current ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.03)",
