@@ -58,7 +58,7 @@ const skillGroups = [
     title: "Integrations",
     icon: <PuzzleIcon />,
     skills: [
-      "Apple Pay", "Google Pay", "Stripe", "Mercado Pago", "Google Maps",
+      "Stripe", "Mercado Pago", "Google Maps",
       "Mapbox", "ML Models", "Thermal Printing", "Codemagic", "TestFlight",
       "Google Play Console", "App Store Connect",
     ],
