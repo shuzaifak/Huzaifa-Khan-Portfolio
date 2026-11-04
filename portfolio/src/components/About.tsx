@@ -84,7 +84,7 @@ export default function About() {
           <AnimatedSection variant="slideInLeft" delay={0.1}>
             <div>
               <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-                Flutter developer with <strong style={{ color: "#ededed" }}>1.5+ years of professional experience</strong>, building
+                Flutter developer with <strong style={{ color: "#ededed" }}>3 years of professional experience</strong>, building
                 cross-platform mobile applications that ship and get used. I have{" "}
                 <strong style={{ color: "#ededed" }}>three live apps on Google Play</strong>, with iOS deployment in progress through
                 Codemagic and TestFlight, and I built and sold my own POS product that digitized a fully manual business. I currently
