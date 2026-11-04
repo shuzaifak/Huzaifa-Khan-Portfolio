@@ -165,7 +165,7 @@ export default function Navbar() {
               }}
             >
               <a
-                href="/huzaifa_cv.pdf"
+                href="/Huzaifa_Khan_Flutter_Developer_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-cta"
@@ -269,7 +269,7 @@ export default function Navbar() {
                 );
               })}
               <a
-                href="/huzaifa_cv.pdf"
+                href="/Huzaifa_Khan_Flutter_Developer_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

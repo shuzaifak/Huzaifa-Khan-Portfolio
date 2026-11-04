@@ -250,7 +250,7 @@ export default function Footer() {
               © {year} Huzaifa Khan. All rights reserved.
             </p>
             <a
-              href="/huzaifa_cv.pdf"
+              href="/Huzaifa_Khan_Flutter_Developer_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{
