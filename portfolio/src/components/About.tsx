@@ -92,8 +92,8 @@ export default function About() {
                 building a Node.js backend and Flutter POS for a restaurant platform.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Kotlin Multiplatform, Node.js, Go, Python, Firebase, PostgreSQL</span>,
-                payment integrations, and AI features with the OpenAI API. I write clean, maintainable code and take full ownership from design to deployment.
+                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Kotlin Multiplatform, Node.js, Go, Firebase, PostgreSQL</span>,
+                and payment and mapping integrations. I write clean, maintainable code and take full ownership from design to deployment.
               </p>
 
               <StaggerContainer staggerDelay={0.1} style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 14 }}>
