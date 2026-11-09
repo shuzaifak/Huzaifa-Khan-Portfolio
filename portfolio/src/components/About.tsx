@@ -56,7 +56,7 @@ const highlights = [
         <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
       </svg>
     ),
-    text: "Flutter · Dart · Kotlin Multiplatform · Firebase · Go",
+    text: "Flutter · Kotlin Multiplatform · Node.js · Go · Firebase",
   },
   {
     icon: (
@@ -88,11 +88,12 @@ export default function About() {
                 cross-platform mobile applications that ship and get used. I have{" "}
                 <strong style={{ color: "#ededed" }}>three live apps on Google Play</strong>, with iOS deployment in progress through
                 Codemagic and TestFlight, and I built and sold my own POS product that digitized a fully manual business. I currently
-                build subscription, payment, and wallet features at SporTech, and work remotely with an international team at Surge.
+                build subscription, payment, and wallet features at SporTech, and work full-time as a full-stack mobile engineer at Surge,
+                building a Node.js backend and Flutter POS for a restaurant platform.
               </p>
               <p style={{ fontSize: 16, lineHeight: 1.85, color: "#777777", marginBottom: 20, fontFamily: "Poppins, sans-serif" }}>
-                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Kotlin Multiplatform, Firebase, Go, REST APIs</span>, and payment and
-                mapping integrations. I write clean, maintainable code and take full ownership from design to deployment.
+                My stack covers <span style={{ color: "#cccccc" }}>Flutter, Dart, Kotlin Multiplatform, Node.js, Go, Python, Firebase, PostgreSQL</span>,
+                payment integrations, and AI features with the OpenAI API. I write clean, maintainable code and take full ownership from design to deployment.
               </p>
 
               <StaggerContainer staggerDelay={0.1} style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 14 }}>

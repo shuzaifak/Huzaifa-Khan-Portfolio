@@ -50,15 +50,16 @@ const skillGroups = [
     title: "Backend",
     icon: <ServerIcon />,
     skills: [
-      "Go", "PostgreSQL", "Firebase", "Firestore", "Cloud Functions", "Supabase",
-      "MySQL", "SQLite", "Hive", "Spring Boot", "REST APIs", "WebSockets",
+      "Node.js", "Express", "Go", "Python (FastAPI)", "PostgreSQL", "Redis",
+      "Firebase", "Firestore", "Cloud Functions", "Supabase", "MySQL", "SQLite",
+      "Hive", "Spring Boot", "REST APIs", "WebSockets", "Socket.IO",
     ],
   },
   {
     title: "Integrations",
     icon: <PuzzleIcon />,
     skills: [
-      "Stripe", "Mercado Pago", "Google Maps",
+      "OpenAI API", "Stripe", "Stripe Billing", "Mercado Pago", "Google Maps",
       "Mapbox", "ML Models", "Thermal Printing", "Codemagic", "TestFlight",
       "Google Play Console", "App Store Connect",
     ],
@@ -66,7 +67,7 @@ const skillGroups = [
   {
     title: "Languages",
     icon: <CodeIcon />,
-    skills: ["Dart", "Kotlin", "Go", "Java", "C++"],
+    skills: ["Dart", "Kotlin", "TypeScript", "Go", "Python", "Java", "C++"],
   },
   {
     title: "Tools",

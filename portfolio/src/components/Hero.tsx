@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), { ssr: false });
 
-const roles = ["Flutter Developer", "Mobile App Engineer", "Cross-Platform Specialist"];
+const roles = ["Flutter Developer", "Full Stack Mobile Engineer", "Cross-Platform Specialist"];
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);

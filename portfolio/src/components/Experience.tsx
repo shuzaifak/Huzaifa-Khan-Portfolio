@@ -33,14 +33,29 @@ const experiences = [
     tech: ["Kotlin Multiplatform", "Compose Multiplatform", "Flutter", "Riverpod", "Go", "PostgreSQL", "Localization (AR/RTL)"],
   },
   {
-    role: "Flutter Developer",
+    role: "Full Stack Mobile Engineer",
     company: "Surge",
     location: "Manchester, England, United Kingdom (Remote)",
-    period: "Aug 2025 – Present",
+    period: "Aug 2026 – Present",
     type: "Full-time",
     current: true,
     bullets: [
-      "Maintaining and enhancing a production Flutter POS system deployed across 10+ restaurants in the UK, ensuring reliability for daily business operations",
+      "Building the new Surge restaurant platform backend from scratch in Node.js (Express 5, TypeScript) with PostgreSQL, Redis, and Docker: auth and RBAC, menu and pricing, orders, tables, delivery, reports, and administration modules",
+      "Integrated Stripe card payments, refunds, and Stripe Billing subscriptions with webhooks, plus a BullMQ outbox worker and a Socket.IO realtime gateway for live order updates",
+      "Rebuilt the Flutter POS on the new API with offline selling, order editing, dine-in tables, delivery tracking, and USB/Bluetooth receipt printing, tested across phone and tablet sizes",
+      "Created a shared Flutter kit for the staff apps with a generated API client covering 114 endpoints, realtime updates, and brand-based light/dark theming",
+    ],
+    tech: ["Node.js", "Express", "TypeScript", "PostgreSQL", "Redis", "Docker", "Stripe", "Flutter"],
+  },
+  {
+    role: "Flutter Developer",
+    company: "Surge",
+    location: "Manchester, England, United Kingdom (Remote)",
+    period: "Aug 2025 – Jul 2026",
+    type: "Part-time",
+    current: false,
+    bullets: [
+      "Maintained a production Flutter POS system deployed across 10+ restaurants in the UK, ensuring reliability for daily business operations",
       "Integrated thermal receipt printing using Android native code, improving receipt generation speed by 70% and eliminating cashier workflow bottlenecks",
       "Optimized multiple screens and resolved critical crash-causing bugs, reducing screen load times by up to 40% and significantly improving app stability",
     ],
@@ -60,6 +75,20 @@ const experiences = [
     ],
     tech: ["Flutter", "Dart", "Provider", "REST APIs", "WebSockets"],
   },
+  {
+    role: "Freelance Flutter Developer",
+    company: "Self-Employed",
+    location: "Remote",
+    period: "Jul 2023 – Jul 2026",
+    type: "Freelance",
+    current: false,
+    bullets: [
+      "Independently designed, developed, and shipped 10+ Flutter applications for clients and independent products, spanning ride-hailing, marketplace, POS, parking, voting, and ML integrations",
+      "Built, marketed, and sold Scalar POS as an independent product, now used by 3 businesses to replace manual operations",
+      "Published 3 apps on Google Play (Bonanza Conexión, Reevall, and Bluepin) with real users",
+    ],
+    tech: ["Flutter", "Firebase", "Cloud Functions", "Stripe", "Google Maps"],
+  },
 ];
 
 export default function Experience() {
@@ -78,7 +107,7 @@ export default function Experience() {
           <div className="section-heading">
             <span className="label">Experience</span>
             <h2>Professional <span className="gradient-text">Journey</span></h2>
-            <p>Shipping subscriptions, payments, and wallets at SporTech, and a production POS with an international team at Surge</p>
+            <p>Shipping subscriptions and wallets at SporTech, and a full restaurant platform, from Node.js backend to Flutter POS, at Surge</p>
           </div>
         </AnimatedSection>
 

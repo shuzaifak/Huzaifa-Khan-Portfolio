@@ -75,6 +75,19 @@ const projects = [
     ],
   },
   {
+    id: "ai-lead-agent",
+    name: "AI Lead Generation Agent",
+    tech: ["Python", "FastAPI", "OpenAI API", "Next.js"],
+    mockups: [] as string[],
+    accent: "#ffffff",
+    live: false,
+    bullets: [
+      "Built an AI sales agent that imports and normalizes leads, crawls and analyzes business websites, and recommends relevant services",
+      "Used the OpenAI API to generate outreach emails for human review, with Gmail integration and scheduled follow-up tracking",
+      "Developed a FastAPI backend with a Next.js dashboard for reviewing leads, approving outreach, and tracking replies",
+    ],
+  },
+  {
     id: "ride-app",
     name: "Ride App",
     tech: ["Flutter", "Firebase", "Firestore", "Mapbox API"],
@@ -155,6 +168,42 @@ const projects = [
   },
 ];
 
+// Browser-window placeholder for web projects that have no phone screenshots
+function WebPreview({ name }: { name: string }) {
+  return (
+    <div style={{
+      position: "relative", width: "100%", maxWidth: 300, height: 220,
+      borderRadius: "14px 14px 0 0", overflow: "hidden",
+      border: "1px solid rgba(255,255,255,0.1)", borderBottom: "none",
+      background: "linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))",
+    }}>
+      <div style={{ display: "flex", gap: 6, padding: "10px 12px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+        {[0, 1, 2].map((d) => (
+          <span key={d} style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.15)" }} />
+        ))}
+      </div>
+      <div style={{ padding: "16px 16px 0", display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{
+            width: 34, height: 34, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center",
+            background: "linear-gradient(135deg, #ffffff, #888888)", color: "#000000",
+            fontSize: 12, fontWeight: 800, fontFamily: "Poppins, sans-serif",
+          }}>AI</div>
+          <span style={{ fontSize: 12, fontWeight: 600, color: "#cccccc", fontFamily: "Poppins, sans-serif" }}>{name}</span>
+        </div>
+        {[92, 74, 84, 58].map((w, i) => (
+          <div key={i} style={{ height: 9, width: `${w}%`, borderRadius: 6, background: `rgba(255,255,255,${0.09 - i * 0.015})` }} />
+        ))}
+        <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
+          {[0, 1, 2].map((c) => (
+            <div key={c} style={{ flex: 1, height: 44, borderRadius: 8, border: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.03)" }} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ project }: { project: typeof projects[0] }) {
   const [currentMockup, setCurrentMockup] = useState(0);
   const [hovered, setHovered] = useState(false);
@@ -195,6 +244,8 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
           background: "radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }} />
+
+        {project.mockups.length === 0 && <WebPreview name={project.name} />}
 
         {project.mockups.map((src, i) => (
           <div
